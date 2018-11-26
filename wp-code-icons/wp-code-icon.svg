@@ -1,0 +1,115 @@
+<svg id="Stacked_Lighting" data-name="Stacked Lighting" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0f6eb2;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient-5);
+      }
+
+      .cls-7 {
+        fill: url(#linear-gradient-6);
+      }
+
+      .cls-8 {
+        fill: url(#linear-gradient-7);
+      }
+
+      .cls-9 {
+        fill: url(#linear-gradient-8);
+      }
+
+      .cls-10 {
+        fill: url(#linear-gradient-9);
+      }
+
+      .cls-11 {
+        fill: url(#linear-gradient-10);
+      }
+
+      .cls-12, .cls-13 {
+        fill: #fff;
+      }
+
+      .cls-12 {
+        opacity: 0.5;
+      }
+
+      .cls-13 {
+        opacity: 0.3;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.893" y1="22.365" x2="8.561" y2="27.823" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.1"/>
+      <stop offset="1" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="8.744" y1="38.669" x2="13.793" y2="23.194" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-opacity="0"/>
+      <stop offset="1" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="23.404" y1="21.783" x2="23.404" y2="44.783" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.1"/>
+      <stop offset="1" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="26.984" y1="36.649" x2="31.708" y2="36.649" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-opacity="0"/>
+      <stop offset="1" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-5" x1="23.459" y1="21.467" x2="23.351" y2="35.911" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-6" x1="35.5" y1="45.108" x2="35.5" y2="11.226" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-7" x1="25.87" y1="48.273" x2="25.653" y2="61.305" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.2"/>
+      <stop offset="1" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-8" x1="44.384" y1="58.953" x2="47.425" y2="58.953" xlink:href="#linear-gradient-4"/>
+    <linearGradient id="linear-gradient-9" x1="0.12" y1="48.041" x2="48.989" y2="54.964" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-10" x1="56.297" y1="63.789" x2="55.645" y2="1.672" xlink:href="#linear-gradient-6"/>
+  </defs>
+  <title>wp-code-icon</title>
+  <polygon class="cls-1" points="4 18 8 16 8 38 4 36 4 18"/>
+  <polygon class="cls-2" points="4 18 8 16 8 33.5 4 36 4 18"/>
+  <polygon class="cls-1" points="13 22 21 22 8 38 4 36 13 22"/>
+  <polygon class="cls-3" points="13 22 18.991 24.473 8 38 4 36 13 22"/>
+  <polygon class="cls-1" points="31 45 13 22 21 22 40 42 31 45"/>
+  <polygon class="cls-4" points="31 45 13 22 21 22 33.809 35.483 31 45"/>
+  <polygon class="cls-5" points="31 45 26.984 39.868 26.984 28.299 33.809 35.483 31 45"/>
+  <polygon class="cls-6" points="21 22 13 22 13.087 22.111 20.936 22.123 33.759 35.651 33.809 35.483 21 22"/>
+  <polygon class="cls-1" points="31 9 40 13 40 42 31 45 31 9"/>
+  <polygon class="cls-7" points="31 9 40 13 40 42 31 45 31 9"/>
+  <polygon class="cls-1" points="0 48 64 57 48 64 0 48"/>
+  <polygon class="cls-8" points="0 48 51.629 55.26 48 64 0 48"/>
+  <polygon class="cls-9" points="41.994 61.998 41.996 53.906 51.629 55.26 48 64 41.994 61.998"/>
+  <polygon class="cls-10" points="51.616 55.36 0.526 48.175 0.001 48 51.63 55.261 51.616 55.36"/>
+  <polygon class="cls-1" points="48 0 64 7 64 57 48 64 48 0"/>
+  <polygon class="cls-11" points="48 0 64 7 64 57 48 64 48 0"/>
+  <polygon class="cls-12" points="30.998 8.998 39.998 12.998 40 13.105 31 9.105 30.998 8.998"/>
+  <polygon class="cls-12" points="48 0 64 6.999 64.002 7.106 48.002 0.106 48 0"/>
+  <polygon class="cls-13" points="8.001 16 4.001 18 3.999 18.106 7.999 16.106 8.001 16"/>
+</svg>
