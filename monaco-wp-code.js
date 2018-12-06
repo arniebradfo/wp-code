@@ -1,4 +1,4 @@
-require.config({ paths: { 'vs': '../node_modules/monaco-editor/min/vs' } });
+require.config({ paths: { 'vs': './node_modules/monaco-editor/min/vs' } });
 
 require(['vs/editor/editor.main'], function () {
 
@@ -189,8 +189,8 @@ require(['vs/editor/editor.main'], function () {
 	});
 });
 
-function getCode() {
-	return `<!DOCTYPE html>
+function getCode() { 
+return `<!DOCTYPE html>
 	<head>
 		<title>Monarch Workbench</title>
 
@@ -202,35 +202,34 @@ function getCode() {
 		</style>
 	</head>
 
-	<body>
-		[thing]
-		[shortcode att="thing" singleAtt]
-			<p>html content</p>
-		[/shortcode]
-		[shorter-code /]
+<body>
+	[thing]
+	[shortcode att="thing" singleAtt]
+		<p>html content</p>
+	[/shortcode]
+	[shorter-code /]
 
-		<!-- wp:namespace/tag-name {"json":"attributes"} -->
-			content
-		<!-- /wp:namespace/tag-name -->
-		<!-- wp:singleTag /-->
+	<!-- wp:namespace/tag-name {"json":"attributes"} -->
+		content
+	<!-- /wp:namespace/tag-name -->
+	<!-- wp:singleTag /-->
 
-		<div class="test">
-			<script>
-				function() {
-					// javascript
-					alert("string: "+2);
-					window.console.log('things to read');
-				};
-			<\/script>
-			<script type="text/x-dafny">
-				class Foo {
-					x : int;
-					invariant x > 0;
-				};
-			<\/script>
-		</div>
-	</body>
+	<div class="test">
+		<script>
+			function() {
+				// javascript
+				alert("string: "+2);
+				window.console.log('things to read');
+			};
+		<\/script>
+		<script type="text/x-dafny">
+			class Foo {
+				x : int;
+				invariant x > 0;
+			};
+		<\/script>
+	</div>
+</body>
 
-	</html>`;
+</html>`;
 }
-

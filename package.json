@@ -1,0 +1,19 @@
+{
+  "name": "wp-code",
+  "version": "0.0.1",
+  "description": "A Wordpress admin code editor plugin using the Monaco code editor that powers Visual Studio Code.",
+  "main": "monaco-wp-code.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://arniebradfo@bitbucket.org/arniebradfo/wp-code.git"
+  },
+  "author": "James Bradford",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/arniebradfo/wp-code#readme",
+  "devDependencies": {
+    "monaco-editor": "^0.15.6"
+  }
+}
