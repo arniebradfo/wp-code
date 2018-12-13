@@ -51,3 +51,6 @@ A Wordpress admin code editor plugin using the Monaco code editor that powers Vi
 ## Logo info
 https://code.visualstudio.com/blogs/2017/10/24/theicon
 https://blogs.msdn.microsoft.com/visualstudio/2017/03/08/iterations-on-infinity/
+
+## TODOs:
+- build file that exports a finalized plugin
