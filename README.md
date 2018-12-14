@@ -1,4 +1,4 @@
-# wp-code
+# wordpress-code
 A Wordpress admin code editor plugin using the Monaco code editor that powers Visual Studio Code.
 
 
@@ -48,9 +48,20 @@ A Wordpress admin code editor plugin using the Monaco code editor that powers Vi
 - [WP SVN](https://developer.wordpress.org/plugins/wordpress-org/how-to-use-subversion/)
 
 
+## Gutenberg Links
+- [Gutenberg Hub, Other links](http://gutenberghub.com/gutenberg-developer-guide/)
+- [Extend Blocks](https://wordpress.org/gutenberg/handbook/extensibility/extending-blocks/)
+- [Gutenberg API](https://wordpress.org/gutenberg/handbook/)
+- [Gutenberg HTML comment syntax](https://wordpress.org/gutenberg/handbook/language/#the-anatomy-of-a-serialized-block)
+- [Events or hooks](https://wordpress.org/gutenberg/handbook/extensibility/extending-editor/)
+- [`wp.data.getBlockMode()`](https://wordpress.org/gutenberg/handbook/designers-developers/developers/data/data-core-editor/#getblockmode)
+
+
 ## Logo info
 https://code.visualstudio.com/blogs/2017/10/24/theicon
 https://blogs.msdn.microsoft.com/visualstudio/2017/03/08/iterations-on-infinity/
 
-## TODOs:
+
+# TODOs:
 - build file that exports a finalized plugin
+- `wp.data.select( 'core/edit-post' ).getEditorMode()` is progress
