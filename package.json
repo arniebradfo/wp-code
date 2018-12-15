@@ -2,7 +2,7 @@
   "name": "wp-code",
   "version": "0.0.1",
   "description": "A Wordpress admin code editor plugin using the Monaco code editor that powers Visual Studio Code.",
-  "main": "monaco-wp-code.js",
+  "main": "src/index.ts",
   "private": true,
   "scripts": {
     "start": "webpack --config webpack.config.js"
