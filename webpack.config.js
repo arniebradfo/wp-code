@@ -23,7 +23,8 @@ module.exports = {
 	output: {
 		globalObject: 'self',
 		filename: '[name].bundle.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/wp-content/plugins/wordpress-code/dist/'
 	},
 	module: {
 		rules: [
