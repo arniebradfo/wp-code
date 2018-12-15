@@ -2,9 +2,18 @@ const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-	mode: 'production',
+	// mode: 'production',
+
+	// Enable sourcemaps for debugging webpack's output.
+	devtool: "source-map",
+
+    resolve: {
+        // Add '.ts' and '.tsx' as resolvable extensions.
+        extensions: [".ts", ".tsx", ".js", ".json"]
+	},
+	
 	entry: {
-		"app": './src/index.js',
+		"app": './src/index.ts',
 		"editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js',
 		// "json.worker": 'monaco-editor/esm/vs/language/json/json.worker',
 		// "css.worker": 'monaco-editor/esm/vs/language/css/css.worker',
@@ -17,10 +26,17 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist')
 	},
 	module: {
-		rules: [{
-			test: /\.css$/,
-			use: [ 'style-loader', 'css-loader' ]
-		}]
+		rules: [
+			{
+				test: /\.css$/,
+				use: [ 'style-loader', 'css-loader' ]
+			},
+			{
+				test: /\.tsx?$/,
+				use: 'ts-loader',
+				exclude: /node_modules/
+			  }
+		]
 	},
 	plugins: [
 		new UglifyJSPlugin()

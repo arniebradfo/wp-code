@@ -42,24 +42,26 @@ import 'monaco-editor/esm/vs/editor/contrib/find/findController.js';
 // import 'monaco-editor/esm/vs/editor/standalone/browser/quickOpen/gotoLine.js';
 // import 'monaco-editor/esm/vs/editor/standalone/browser/quickOpen/quickCommand.js';
 // import 'monaco-editor/esm/vs/editor/standalone/browser/toggleHighContrast/toggleHighContrast.js';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
+import 'monaco-editor/esm/vs/editor/editor.api.js';
+// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
+// import * as monaco from '../node_modules/monaco-editor/esm/vs/editor/editor.api.js';
 
 // (2) Desired languages:
-// import 'monaco-editor/esm/vs/language/typescript/monaco.contribution';
-// import 'monaco-editor/esm/vs/language/css/monaco.contribution';
-// import 'monaco-editor/esm/vs/language/json/monaco.contribution';
-// import 'monaco-editor/esm/vs/language/html/monaco.contribution';
+import 'monaco-editor/esm/vs/language/typescript/monaco.contribution';
+import 'monaco-editor/esm/vs/language/css/monaco.contribution';
+import 'monaco-editor/esm/vs/language/json/monaco.contribution';
+import 'monaco-editor/esm/vs/language/html/monaco.contribution';
 // import 'monaco-editor/esm/vs/basic-languages/bat/bat.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/coffee/coffee.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/cpp/cpp.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/csharp/csharp.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/csp/csp.contribution.js';
-// import 'monaco-editor/esm/vs/basic-languages/css/css.contribution.js';
+import 'monaco-editor/esm/vs/basic-languages/css/css.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/dockerfile/dockerfile.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/fsharp/fsharp.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/go/go.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/handlebars/handlebars.contribution.js';
-// import 'monaco-editor/esm/vs/basic-languages/html/html.contribution.js';
+import 'monaco-editor/esm/vs/basic-languages/html/html.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/ini/ini.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/java/java.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/less/less.contribution.js';
@@ -69,11 +71,11 @@ import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js';
 // import 'monaco-editor/esm/vs/basic-languages/mysql/mysql.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/objective-c/objective-c.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/pgsql/pgsql.contribution.js';
-// import 'monaco-editor/esm/vs/basic-languages/php/php.contribution.js';
+import 'monaco-editor/esm/vs/basic-languages/php/php.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/postiats/postiats.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/powershell/powershell.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/pug/pug.contribution.js';
-import 'monaco-editor/esm/vs/basic-languages/python/python.contribution.js';
+// import 'monaco-editor/esm/vs/basic-languages/python/python.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/r/r.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/razor/razor.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/redis/redis.contribution.js';
@@ -87,47 +89,7 @@ import 'monaco-editor/esm/vs/basic-languages/python/python.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/vb/vb.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/xml/xml.contribution.js';
 // import 'monaco-editor/esm/vs/basic-languages/yaml/yaml.contribution.js';
-// import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
+import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
 // import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution';
 
 
-
-// self.MonacoEnvironment = {
-// 	getWorkerUrl: function (moduleId, label) {
-// 		// if (label === 'json') {
-// 		// 	return './json.worker.bundle.js';
-// 		// }
-// 		// if (label === 'css') {
-// 		// 	return './css.worker.bundle.js';
-// 		// }
-// 		// if (label === 'html') {
-// 		// 	return './html.worker.bundle.js';
-// 		// }
-// 		// if (label === 'typescript' || label === 'javascript') {
-// 		// 	return './ts.worker.bundle.js';
-// 		// }
-// 		return './editor.worker.bundle.js';
-// 	}
-// }
-
-// monaco.editor.create(document.getElementById('container'), {
-// 	value: [
-// 		'from banana import *',
-// 		'',
-// 		'class Monkey:',
-// 		'	# Bananas the monkey can eat.',
-// 		'	capacity = 10',
-// 		'	def eat(self, N):',
-// 		'		\'\'\'Make the monkey eat N bananas!\'\'\'',
-// 		'		capacity = capacity - N*banana.size',
-// 		'',
-// 		'	def feeding_frenzy(self):',
-// 		'		eat(9.25)',
-// 		'		return "Yum yum"',
-// 	].join('\n'),
-// 	language: 'python'
-// });
-
-
-// monaco.editor
-console.dir(monaco );

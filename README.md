@@ -65,3 +65,7 @@ https://blogs.msdn.microsoft.com/visualstudio/2017/03/08/iterations-on-infinity/
 # TODOs:
 - build file that exports a finalized plugin
 - `wp.data.select( 'core/edit-post' ).getEditorMode()` is progress
+- maybe use a monaco enqueued global of some sort with a separate typescript project. Load:
+	- monaco.min.js, possibly reduced to necessary stuff, if possible
+	- wp-code.min.js that depends on it. compiled from typescript file.
+	- 
