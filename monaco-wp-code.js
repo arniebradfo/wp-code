@@ -183,53 +183,72 @@ require(['vs/editor/editor.main'], function () {
 
 	var editor = monaco.editor.create(document.getElementById('container'), {
 		// theme: 'myCoolTheme',
-		value: getCode(),
+		value: getSampleCode(),
 		language: 'wordpressCode',
-		theme: "vs-dark"
+		theme: "vs-dark",
+		wordWrap: "on",
+		wrappingIndent: "same"
 	});
 });
 
-function getCode() { 
-return `<!DOCTYPE html>
-	<head>
-		<title>Monarch Workbench</title>
+function getSampleCode() { 
+return `
+<!DOCTYPE html>
+<html>
 
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<!-- a comment -->
-		<!-- wp:thing/ {"json":0} -->
-		<style>
-			body { font-family: Consolas; } /* nice */
-		</style>
-	</head>
+<head>
+	<title>Monarch Wordpress Gutenberg Tokenizer Example</title>
+</head>
 
 <body>
-	[thing]
+	<h1>Monarch Wordpress Gutenberg Tokenizer Example</h1>
+
+	<h2>It works with shortcodes!</h2>
 	[shortcode att="thing" singleAtt]
-		<p>html content</p>
+		<p>
+			Html content: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
 	[/shortcode]
 	[shorter-code /]
 
-	<!-- wp:namespace/tag-name {"json":"attributes"} -->
-		content
+	<h2>It works with gutenberg comments!</h2>
+	<!-- wp:namespace/tag-name { 
+			"json":   "attributes", 
+			"number": 1000, 
+			"bool":   true, 
+			"array":  [1,2,"3"], 
+			"obj":    {} 
+		} -->
+		<!-- A normal html comment -->
+		<p>
+			Html content: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+		</p>
 	<!-- /wp:namespace/tag-name -->
 	<!-- wp:singleTag /-->
 
+	<h2>It works with css style blocks!</h2>
+	<style> /* css comment */
+		body { 
+			font-family: Consolas; 
+			color: red;
+			font-size: 25px;
+		} 
+	</style>
+
+	<h2>It works with javascript script blocks!</h2>
 	<div class="test">
-		<script>
-			function() {
-				// javascript
-				alert("string: "+2);
-				window.console.log('things to read');
+		<script type="text/javascript">
+			function funky() {
+				// javascript comment
+				var number = 1000;
+				var string = "string: ";
+				console.log(string + number);
 			};
-		<\/script>
-		<script type="text/x-dafny">
-			class Foo {
-				x : int;
-				invariant x > 0;
-			};
-		<\/script>
+		</script>
 	</div>
+
 </body>
 
-</html>`;
+</html>
+`;
 }
