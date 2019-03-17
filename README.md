@@ -1,39 +1,68 @@
 # wordpress-code
 A Wordpress admin code editor plugin using the Monaco code editor that powers Visual Studio Code.
 
+## Survey
+https://docs.google.com/forms/d/1pSh0T5mVbDIQuagexBKl4mlwFUUd3F4J5A9hhv7i5AM/edit
 
 ## Features
 - Code Editing In:
-	- Traditional editor
-	- Edit theme or plugin
-	- additional Css in Customize
-	- extra html widget
-	- Gutenberg...
-		- gutenberg block comment + json
+	- Classic Editor
+	- Edit Theme
+	- Edit Plugin
+	- Additional Css in Customize
+	- HTML widget
+	- Gutenberg Blocks
+		- Code Editor - gutenberg block comment + json
+		- Gutenberg, View HTML mode of each block
 		- html block
-		- gutenberg, view html mode
 		- shortcode backwards compat
+- Plugin Support:
 - syntax highlighting for 
 	- html+shortcodes 
 	- html+gutenberg
 	- html, css, js, php, other stuff in the the Theme/plugin editor
-- settings page for setting your own json file...
-- adding themes from the vscode store
-- full screen editor
-- emmet
-- save with command-s
-- restore cursor place
+- settings page for setting your own json file... 
+	- setting open anywhere but have a page as well.
+- adding themes from the vscode store 
+- full screen editor 
+- emmet / autocomplete
+- SAVING
+	- save with command-s
+	- restore cursor place
+	- retain undo tree?
+	- ajax save
+- REVISION - diffing with older revisions
+- Formatting button.
+	- format code 
 - works the same anywhere it is
+- intellisense for shortcodes
+- translate into other languages
+- Better layout so scrolling doesn't suck
+- linters?
+### CONTENT SUPPORT
+- wp auto p management
+- Scripts n styles
+	- use less and define global variables and functions
+	- js too
+	- on global Customize page
+	- tabbed interface?
+- Global and Post `{%vars%}`
+- Content Blocks - with visual button
+	- Snippets
+	- Define shortcodes - shortcoder plugin
+	- Define blocks
+### BUSINESS
 - only paid, one-time pay?
 - user-tracking
 - terms of service
-- diffing with older revisions
 - maybes?
-	- linters?
-	- disable auto p
+	- global find and replace - maybe only across certain content
 	- integration with other plugins
 	- detect HESH and warn
 - adding vs-code extensions?
+- copy pricing from:
+	https://www.csshero.org/
+	https://www.advancedcustomfields.com/
 
 
 ## Useful Links
