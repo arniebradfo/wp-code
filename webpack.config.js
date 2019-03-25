@@ -5,7 +5,7 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 module.exports = {
 	mode: 'development',
 	entry: {
-		"app": './index.ts',
+		"app": './entry.js',
 	},
 	output: {
 		globalObject: 'self',
@@ -30,7 +30,7 @@ module.exports = {
 		extensions: [ '.tsx', '.ts', '.js' ]
 	},
 	plugins: [
-		new MonacoWebpackPlugin(),
+		new MonacoWebpackPlugin(), // TODO: options
 		new LiveReloadPlugin()
 	]
 };

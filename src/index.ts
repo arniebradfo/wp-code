@@ -1,13 +1,3 @@
-import './global-imports';
-
-// NONE OF THIS WORKs WITH TYPESCRIPT //
-// import * as something from 'monaco-editor'
-// import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-// import  './node_modules/monaco-editor/monaco'
-// import * as anything from './node_modules/monaco-editor/monaco';
-// import * as monaco from 'monaco-editor';
-// import { monaco } from 'monaco-editor';
-
 declare const wpCodeOptions;
 
 console.log(self)
