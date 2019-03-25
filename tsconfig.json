@@ -18,10 +18,10 @@
 	// ]
 	"include": [
 		"src/**/*",
-		"./*"
-	],
-	"files": [
+		"./*",
 		"./node_modules/monaco-editor/monaco.d.ts"
-	]
+	],
+	// "files": [
+	// ]
 
 }
