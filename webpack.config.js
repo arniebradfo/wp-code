@@ -1,45 +1,37 @@
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+// const webpack = require('webpack');
+// import path from 'path';
+// import webpack from 'webpack';
+
+// const ASSET_PATH = process.env.ASSET_PATH || '/';
+
 
 module.exports = {
-	// mode: 'production',
-
-	// Enable sourcemaps for debugging webpack's output.
-	devtool: "source-map",
-
-    resolve: {
-        // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx", ".js", ".json"]
-	},
-	
+	mode: 'development',
 	entry: {
-		"app": './src/index.ts',
+		"app": './index.js',
 		"editor.worker": 'monaco-editor/esm/vs/editor/editor.worker.js',
-		// "json.worker": 'monaco-editor/esm/vs/language/json/json.worker',
-		// "css.worker": 'monaco-editor/esm/vs/language/css/css.worker',
-		// "html.worker": 'monaco-editor/esm/vs/language/html/html.worker',
-		// "ts.worker": 'monaco-editor/esm/vs/language/typescript/ts.worker',
+		"json.worker": 'monaco-editor/esm/vs/language/json/json.worker',
+		"css.worker": 'monaco-editor/esm/vs/language/css/css.worker',
+		"html.worker": 'monaco-editor/esm/vs/language/html/html.worker',
+		"ts.worker": 'monaco-editor/esm/vs/language/typescript/ts.worker',
 	},
 	output: {
 		globalObject: 'self',
 		filename: '[name].bundle.js',
 		path: path.resolve(__dirname, 'dist'),
-		publicPath: '/wp-content/plugins/wordpress-code/dist/'
+		publicPath: '/wp-content/plugins/wp-code-dev/dist/'
 	},
 	module: {
-		rules: [
-			{
-				test: /\.css$/,
-				use: [ 'style-loader', 'css-loader' ]
-			},
-			{
-				test: /\.tsx?$/,
-				use: 'ts-loader',
-				exclude: /node_modules/
-			  }
-		]
+		rules: [{
+			test: /\.css$/,
+			use: ['style-loader', 'css-loader']
+		}]
 	},
-	plugins: [
-		new UglifyJSPlugin()
-	],
+	// plugins: [
+	// 	// This makes it possible for us to safely use env vars on our code
+	// 	new webpack.DefinePlugin({
+	// 		'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH)
+	// 	})
+	// ]
 };
