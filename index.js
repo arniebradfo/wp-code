@@ -3,25 +3,6 @@ import * as monaco from 'monaco-editor';
 
 console.log(self)
 
-// self.MonacoEnvironment = {
-// 	getWorkerUrl: function (moduleId, label) {
-// 		if (label === 'json') {
-// 			return window.__webpack_public_path__+'json.worker.bundle.js';
-// 		}
-// 		if (label === 'css') {
-// 			return window.__webpack_public_path__+'/css.worker.bundle.js';
-// 		}
-// 		if (label === 'html') {
-// 			return window.__webpack_public_path__+'/html.worker.bundle.js';
-// 		}
-// 		if (label === 'typescript' || label === 'javascript') {
-// 			return window.__webpack_public_path__+'/ts.worker.bundle.js';
-// 		}
-// 		return window.__webpack_public_path__+'/editor.worker.bundle.js';
-// 	}
-// }
-
-
 var editor;
 var target = document.createElement("div"); 
 var textarea = document.getElementById('content');
@@ -31,7 +12,8 @@ textarea.parentElement.appendChild(target);
 
 editor = monaco.editor.create(target, {
 	value: textarea.value,
-	language: 'html'
+	language: 'html',
+	theme: 'vs-dark',
 });
 
 console.log(
