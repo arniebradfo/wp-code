@@ -1,5 +1,5 @@
 import './public-path';
-// import monaco from 'monaco-editor';
+// import * as monaco from 'monaco-editor';
 
 declare const wpCodeOptions;
 
