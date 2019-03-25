@@ -37,8 +37,8 @@ function wpCode_admin_enqueue_scripts () {
 
 	$wpCodeOptions = array(
 		// https://webpack.js.org/guides/public-path/
-		// 'publicPath' => WP_CODE_LIBS.'dist/'
-		'publicPath' => '/wp-content/plugins/wp-code-dev/dist/'
+		'publicPath' => WP_CODE_LIBS.'dist/'
+		// 'publicPath' => '/wp-content/plugins/wp-code-dev/dist/'
 	);
 
 	wp_localize_script(
