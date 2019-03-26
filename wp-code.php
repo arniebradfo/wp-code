@@ -25,29 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Block Initializer.
- */
-// require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
 define( 'WP_CODE_LIBS', plugins_url( '/', __FILE__ ) );
 
-
-function wpCode_admin_enqueue_scripts () {
-	wp_enqueue_script( 'wpCode', WP_CODE_LIBS.'dist/app.bundle.js', array(), false, true );
-
-	$wpCodeOptions = array(
-		// https://webpack.js.org/guides/public-path/
-		'publicPath' => WP_CODE_LIBS.'dist/'
-		// 'publicPath' => '/wp-content/plugins/wp-code-dev/dist/'
-	);
-
-	wp_localize_script(
-		'wpCode',        // for hesh.js
-		'wpCodeOptions',   // the object name, shows up in js as window.heshOptions
-		$wpCodeOptions     // the php object to translate to js
-	);
-}
-add_action( 'admin_enqueue_scripts', 'wpCode_admin_enqueue_scripts');
-
+require_once plugin_dir_path( __FILE__ ) . 'src/init.php';
 
 ?>

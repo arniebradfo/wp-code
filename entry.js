@@ -1,6 +1,6 @@
 import './src/public-path';
 import 'monaco-editor'; // so monaco will be loaded as a global
-import './src/index';
+import './src/editor';
 
 // import * as monaco from 'monaco-editor';
 // or import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
