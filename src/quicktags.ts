@@ -1,3 +1,5 @@
+declare const QTags: any;
+
 // THIS DOESN'T WORK
 // $( document ).on( 'wp-before-quicktags-init', e => console.log(e) );
 // INTERCEPT INSERT

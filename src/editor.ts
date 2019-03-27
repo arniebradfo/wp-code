@@ -1,35 +1,61 @@
 declare const wpCodeOptions;
-declare const QTags: any;
 
-// declare const $;
+class PostEditor {
 
-// console.log(self)
+	public standaloneCodeEditor: monaco.editor.IStandaloneCodeEditor;
+	public wrapperElement = document.createElement("div");
 
-var target = document.createElement("div"); 
-var textarea: HTMLTextAreaElement = document.querySelector('textarea#content');
-target.style.width = '100';
-target.style.height = '600px';
-textarea.style.height = '100px';
-textarea.parentElement.appendChild(target);
+	constructor(
+		public textarea?: HTMLTextAreaElement
+	) {		
+		// this.wrapperElement.style.width  = '100%';
+		// this.wrapperElement.style.height = '600px';
+		// this.textarea.style.height = '100px';
 
-var editor = monaco.editor.create(target, {
-	value: textarea.value,
-	language: 'html',
-	theme: 'vs-dark',
-});
+		this.textarea.parentElement.appendChild(this.wrapperElement);
+		this.standaloneCodeEditor = monaco.editor.create(this.wrapperElement, {
+			value: textarea.value,
+			language: 'html',
+			theme: 'vs-dark',
+		});
 
-editor.onDidChangeModelContent((event)=>{
-	console.log(editor.getValue());
-	textarea.value = editor.getValue();
-})
+		this.standaloneCodeEditor.onDidChangeModelContent( (event) => {
+			console.log(event);
+			this.textarea.value = this.standaloneCodeEditor.getValue();
+		})
 
-// textarea.addEventListener('change', e => console.log(e) );
+		window.addEventListener('resize', this.resizeEditor.bind(this));
 
+		this.matchTextAreaHeight();
+		this.attachDragResizeCopier();
 
-// console.log(
-// 	'loaded!',
-// 	monaco,
-// 	target,
-// 	editor,
-// 	wpCodeOptions
-// );
+	}
+
+	resizeEditor(event: Event) {
+		console.log(event);
+		this.standaloneCodeEditor.layout();
+	}
+
+	attachDragResizeCopier() {
+		document.getElementById('content-resize-handle').addEventListener('mousedown', (e) => {
+			console.log(e);
+			
+			document.addEventListener('mousemove', this.matchTextAreaHeight.bind(this));
+		});
+		document.addEventListener('mouseup', (e) => {
+			document.removeEventListener('mousemove', this.matchTextAreaHeight.bind(this));
+			// editor.refresh(); // TODO: put this somewhere else 
+		});
+	}
+
+	matchTextAreaHeight() {
+		this.wrapperElement.style.height = this.textarea.style.height;
+		this.standaloneCodeEditor.layout();
+
+	}
+
+}
+
+const postEditor = new PostEditor(document.querySelector('textarea#content'));
+
+console.log(postEditor);
