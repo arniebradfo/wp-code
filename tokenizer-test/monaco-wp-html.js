@@ -3,10 +3,10 @@ require.config({ paths: { 'vs': './node_modules/monaco-editor/min/vs' } });
 require(['vs/editor/editor.main'], function () {
 
 	monaco.languages.register({
-		id: 'wordpressCode'
+		id: 'wpHtml'
 	});
 
-	monaco.languages.setMonarchTokensProvider('wordpressCode', {
+	monaco.languages.setMonarchTokensProvider('wpHtml', {
 
 		// https://microsoft.github.io/monaco-editor/monarch.html
 		// https://github.com/Microsoft/monaco-languages/blob/a3d4b50888f8ad49d5fc87d6add002b99809f4c9/src/html/html.ts#L67:L205
@@ -184,7 +184,7 @@ require(['vs/editor/editor.main'], function () {
 	var editor = monaco.editor.create(document.getElementById('container'), {
 		// theme: 'myCoolTheme',
 		value: getSampleCode(),
-		language: 'wordpressCode',
+		language: 'wpHtml',
 		theme: "vs-dark",
 		wordWrap: "on",
 		wrappingIndent: "same"

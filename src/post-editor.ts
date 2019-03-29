@@ -16,8 +16,8 @@ class PostEditor {
 		this.textarea.parentElement.appendChild(this.wrapperElement);
 		this.standaloneCodeEditor = monaco.editor.create(this.wrapperElement, {
 			value: textarea.value,
-			language: 'html',
-			// language: 'wordpressCode',
+			// language: 'html',
+			language: 'wpHtml',
 			theme: 'vs-dark',
 		});
 
@@ -31,13 +31,13 @@ class PostEditor {
 
 	}
 
+	//#region Drag Resize //
 	public isResizing = false;
 	private yStartPosition = 0;
 	private newHeight = 0;
 	private minEditorHeight = 200;
 	private editorHeight = 500;
 	private resizeHandle: HTMLElement;
-	
 	
 	private handleDragResize_bind = this.handleDragResize.bind(this);
 	private handleDragResize(event) {
@@ -79,7 +79,7 @@ class PostEditor {
 		}
 		this.resizeHandle.addEventListener('mousedown', this.startDragResize.bind(this));	
 	}
-
+	//#endregion //
 }
 
 export default PostEditor;

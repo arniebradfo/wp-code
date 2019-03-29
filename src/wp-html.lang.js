@@ -1,4 +1,4 @@
-const wordpressCodeMonarchLanguage = {
+const wpHtmlMonarchLanguage = {
 
 	// https://microsoft.github.io/monaco-editor/monarch.html
 	// https://github.com/Microsoft/monaco-languages/blob/a3d4b50888f8ad49d5fc87d6add002b99809f4c9/src/html/html.ts#L67:L205
@@ -172,4 +172,4 @@ const wordpressCodeMonarchLanguage = {
 		// -- END <style> tags handling
 	},
 }
-export default wordpressCodeMonarchLanguage;
+export default wpHtmlMonarchLanguage;
