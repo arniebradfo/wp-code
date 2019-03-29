@@ -1,4 +1,4 @@
-const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
+const wordpressCodeMonarchLanguage = {
 
 	// https://microsoft.github.io/monaco-editor/monarch.html
 	// https://github.com/Microsoft/monaco-languages/blob/a3d4b50888f8ad49d5fc87d6add002b99809f4c9/src/html/html.ts#L67:L205
@@ -12,23 +12,23 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 		root: [
 			[/<!DOCTYPE/, 'metatag', '@doctype'],
 
-			// [/(<!--)(\s+)(wp:[\w\-\/]+)/, ['delimiter', '', { token: 'tag', next: '@gutenbergComment' }]],
+			[/(<!--)(\s+)(wp:[\w\-\/]+)/, ['delimiter', '', { token: 'tag', next: '@gutenbergComment' }]], // ts error
 			[/(<!--)(\s+)(\/wp:[\w\-\/]+)(\s+)(-->)/, ['delimiter', '', 'tag', '', 'delimiter']],
 
 			[/<!--/, 'comment', '@comment'],
 
 			[/(<)((?:[\w\-]+:)?[\w\-]+)(\s*)(\/>)/, ['delimiter', 'tag', '', 'delimiter']],
-			// [/(<)(script)/, ['delimiter', { token: 'tag', next: '@script' }]],
-			// [/(<)(style)/, ['delimiter', { token: 'tag', next: '@style' }]],
-			// [/(<)((?:[\w\-]+:)?[\w\-]+)/, ['delimiter', { token: 'tag', next: '@otherTag' }]],
-			// [/(<\/)((?:[\w\-]+:)?[\w\-]+)/, ['delimiter', { token: 'tag', next: '@otherTag' }]],
+			[/(<)(script)/, ['delimiter', { token: 'tag', next: '@script' }]], // ts error
+			[/(<)(style)/, ['delimiter', { token: 'tag', next: '@style' }]], // ts error
+			[/(<)((?:[\w\-]+:)?[\w\-]+)/, ['delimiter', { token: 'tag', next: '@otherTag' }]], // ts error
+			[/(<\/)((?:[\w\-]+:)?[\w\-]+)/, ['delimiter', { token: 'tag', next: '@otherTag' }]], // ts error
 
 			[/(\[)((?:[\w\-]+:)?[\w\-]+)(\s*)(\/\])/, ['delimiter', 'tag', '', 'delimiter']],
-			// [/(\[)((?:[\w\-]+:)?[\w\-]+)/, ['delimiter', { token: 'tag', next: '@otherShortcode' }]],
-			// [/(\[\/)((?:[\w\-]+:)?[\w\-]+)/, ['delimiter', { token: 'tag', next: '@otherShortcode' }]],
+			[/(\[)((?:[\w\-]+:)?[\w\-]+)/, ['delimiter', { token: 'tag', next: '@otherShortcode' }]], // ts error
+			[/(\[\/)((?:[\w\-]+:)?[\w\-]+)/, ['delimiter', { token: 'tag', next: '@otherShortcode' }]], // ts error
 
 			[/[\[<]/, 'delimiter'],
-			// [/[^<\[]+/], // text
+			[/[^<\[]+/], // text // ts error
 		],
 
 		doctype: [
@@ -44,7 +44,7 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 
 		gutenbergComment: [
 			[/\s/, { token: '', next: '@jsonEmbedded', nextEmbedded: 'text/javascript' }],
-			// [/[ \t\r\n]+/], // whitespace
+			[/[ \t\r\n]+/], // whitespace // ts error
 			[/\/?-->/, { token: 'delimiter', next: '@pop' }],
 		],
 
@@ -59,7 +59,7 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 			[/'([^']*)'/, 'attribute.value'],
 			[/[\w\-]+/, 'attribute.name'],
 			[/=/, 'delimiter'],
-			// [/[ \t\r\n]+/], // whitespace
+			[/[ \t\r\n]+/], // whitespace // ts error
 		],
 
 		otherShortcode: [
@@ -68,7 +68,7 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 			[/'([^']*)'/, 'attribute.value'],
 			[/[\w\-]+/, 'attribute.name'],
 			[/=/, 'delimiter'],
-			// [/[ \t\r\n]+/], // whitespace
+			[/[ \t\r\n]+/], // whitespace // ts error
 		],
 
 
@@ -82,15 +82,15 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 			[/[\w\-]+/, 'attribute.name'],
 			[/=/, 'delimiter'],
 			[/>/, { token: 'delimiter', next: '@scriptEmbedded', nextEmbedded: 'text/javascript' }],
-			// [/[ \t\r\n]+/], // whitespace
-			// [/(<\/)(script\s*)(>)/, ['delimiter', 'tag', { token: 'delimiter', next: '@pop' }]]
+			[/[ \t\r\n]+/], // whitespace // ts error
+			[/(<\/)(script\s*)(>)/, ['delimiter', 'tag', { token: 'delimiter', next: '@pop' }]] // ts error
 		],
 
 		// After <script ... type
 		scriptAfterType: [
 			[/=/, 'delimiter', '@scriptAfterTypeEquals'],
 			[/>/, { token: 'delimiter', next: '@scriptEmbedded', nextEmbedded: 'text/javascript' }], // cover invalid e.g. <script type>
-			// [/[ \t\r\n]+/], // whitespace
+			[/[ \t\r\n]+/], // whitespace // ts error
 			[/<\/script\s*>/, { token: '@rematch', next: '@pop' }]
 		],
 
@@ -99,7 +99,7 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 			[/"([^"]*)"/, { token: 'attribute.value', switchTo: '@scriptWithCustomType.$1' }],
 			[/'([^']*)'/, { token: 'attribute.value', switchTo: '@scriptWithCustomType.$1' }],
 			[/>/, { token: 'delimiter', next: '@scriptEmbedded', nextEmbedded: 'text/javascript' }], // cover invalid e.g. <script type=>
-			// [/[ \t\r\n]+/], // whitespace
+			[/[ \t\r\n]+/], // whitespace // ts error
 			[/<\/script\s*>/, { token: '@rematch', next: '@pop' }]
 		],
 
@@ -110,7 +110,7 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 			[/'([^']*)'/, 'attribute.value'],
 			[/[\w\-]+/, 'attribute.name'],
 			[/=/, 'delimiter'],
-			// [/[ \t\r\n]+/], // whitespace
+			[/[ \t\r\n]+/], // whitespace // ts error
 			[/<\/script\s*>/, { token: '@rematch', next: '@pop' }]
 		],
 
@@ -132,15 +132,15 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 			[/[\w\-]+/, 'attribute.name'],
 			[/=/, 'delimiter'],
 			[/>/, { token: 'delimiter', next: '@styleEmbedded', nextEmbedded: 'text/css' }],
-			// [/[ \t\r\n]+/], // whitespace
-			// [/(<\/)(style\s*)(>)/, ['delimiter', 'tag', { token: 'delimiter', next: '@pop' }]]
+			[/[ \t\r\n]+/], // whitespace // ts error
+			[/(<\/)(style\s*)(>)/, ['delimiter', 'tag', { token: 'delimiter', next: '@pop' }]] // ts error
 		],
 
 		// After <style ... type
 		styleAfterType: [
 			[/=/, 'delimiter', '@styleAfterTypeEquals'],
 			[/>/, { token: 'delimiter', next: '@styleEmbedded', nextEmbedded: 'text/css' }], // cover invalid e.g. <style type>
-			// [/[ \t\r\n]+/], // whitespace
+			[/[ \t\r\n]+/], // whitespace // ts error
 			[/<\/style\s*>/, { token: '@rematch', next: '@pop' }]
 		],
 
@@ -149,7 +149,7 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 			[/"([^"]*)"/, { token: 'attribute.value', switchTo: '@styleWithCustomType.$1' }],
 			[/'([^']*)'/, { token: 'attribute.value', switchTo: '@styleWithCustomType.$1' }],
 			[/>/, { token: 'delimiter', next: '@styleEmbedded', nextEmbedded: 'text/css' }], // cover invalid e.g. <style type=>
-			// [/[ \t\r\n]+/], // whitespace
+			[/[ \t\r\n]+/], // whitespace // ts error
 			[/<\/style\s*>/, { token: '@rematch', next: '@pop' }]
 		],
 
@@ -160,7 +160,7 @@ const wordpressCodeMonarchLanguage: monaco.languages.IMonarchLanguage = {
 			[/'([^']*)'/, 'attribute.value'],
 			[/[\w\-]+/, 'attribute.name'],
 			[/=/, 'delimiter'],
-			// [/[ \t\r\n]+/], // whitespace
+			[/[ \t\r\n]+/], // whitespace // ts error
 			[/<\/style\s*>/, { token: '@rematch', next: '@pop' }]
 		],
 
