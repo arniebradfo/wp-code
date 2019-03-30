@@ -2,34 +2,89 @@ declare const wpCodeOptions;
 
 class PostEditor {
 
-	public standaloneCodeEditor: monaco.editor.IStandaloneCodeEditor;
+	public editor: monaco.editor.IStandaloneCodeEditor;
 	public wrapperElement = document.createElement("div");
+	textTab: HTMLElement;
+	visualTab: HTMLElement;
+
+
+	// public get isVisualEnabled
+
+	
+	public get isVisualEnabled() : boolean {
+		// TODO: this is part of a wp.property somewhere
+		return document.getElementById('content-tmce') != null;
+	}
+	public get isVisualTabActive() : boolean {
+		// TODO: this is part of a wp.property somewhere
+		return document.getElementsByClassName('tmce-active')[0] != null;
+	}
+	public get isTextTabActive() : boolean {
+		return ! this.isVisualTabActive;
+	}
 
 	constructor(
 		public textarea?: HTMLTextAreaElement
 	) {		
-		// this.wrapperElement.style.width  = '100%';
-		this.wrapperElement.style.height = '600px';
-		// this.textarea.style.height = '100px';
-		this.textarea.style.display = 'none';
+		this.findElements();
+		this.createEditor();
+		this.attachEditorStateChanges();
+		this.stopEditor();
+		if (this.isTextTabActive)
+			this.startEditor();
+	}
 
+	findElements() {
+		this.textTab   = document.getElementById('content-html');
+		this.visualTab = document.getElementById('content-tmce');	
+	}
+
+	createEditor() {
+		this.wrapperElement.style.height = this.textarea.style.height || '500px'; // TODO: where does this come from?
 		this.textarea.parentElement.appendChild(this.wrapperElement);
-		this.standaloneCodeEditor = monaco.editor.create(this.wrapperElement, {
-			value: textarea.value,
+		this.editor = monaco.editor.create(this.wrapperElement, {
+			// value: this.textarea.value,
 			// language: 'html',
 			language: 'wpHtml',
 			theme: 'vs-dark',
 		});
 
-		this.standaloneCodeEditor.onDidChangeModelContent( (event) => {
-			console.log(event);
-			this.textarea.value = this.standaloneCodeEditor.getValue();
+		this.editor.onDidChangeModelContent( e => {
+			this.textarea.value = this.editor.getValue();
 		})
 
-		window.addEventListener('resize', e => this.standaloneCodeEditor.layout() );
+		window.addEventListener('resize', e => this.editor.layout() );
 		this.attachDragResize(500);
-
 	}
+
+	attachEditorStateChanges() {
+		this.textTab.addEventListener('click', e => {
+			window.setTimeout( this.startEditor.bind(this), 0 );
+		});
+		this.visualTab.addEventListener('click', e => {
+			window.setTimeout( this.stopEditor.bind(this), 0 );
+		});
+	}
+
+	startEditor() {
+		// console.log(this.wrapperElement.style.display = '');
+		
+		// if (this.isTextTabActive) return;
+		this.textarea.style.display = 'none';
+		this.wrapperElement.style.display = '';
+		this.editor.setValue(this.textarea.value);
+
+		// restore selection state and position
+	}
+
+	stopEditor () {
+		console.log('stopEditor');
+
+		// if (this.isVisualTabActive) return;
+		this.wrapperElement.style.display = 'none';
+	}
+
+	
 
 	//#region Drag Resize //
 	public isResizing = false;
@@ -38,12 +93,28 @@ class PostEditor {
 	private minEditorHeight = 200;
 	private editorHeight = 500;
 	private resizeHandle: HTMLElement;
-	
+
+	// attaches a dragger to the bottom right of the theme/plugin editor to control editor height
+	private attachDragResize(editorHeightSet:number) {
+		this.newHeight = this.editorHeight = parseInt(this.wrapperElement.style.height);
+		// this.wrapperElement.style.height = this.editorHeight + 'px';
+
+		this.resizeHandle = document.getElementById('content-resize-handle')
+		if (!this.resizeHandle) { 
+			// if there is no resize handle, make one and append it
+			this.resizeHandle = document.createElement('div');
+			this.resizeHandle.className = 'wpCode-content-resize-handle';
+			this.resizeHandle.id = 'content-resize-handle';
+			this.wrapperElement.appendChild(this.resizeHandle);
+		}
+		this.resizeHandle.addEventListener('mousedown', this.startDragResize.bind(this));	
+	}
+
 	private handleDragResize_bind = this.handleDragResize.bind(this);
 	private handleDragResize(event) {
 		this.newHeight = this.editorHeight + (event.pageY - this.yStartPosition);
 		this.wrapperElement.style.height = Math.max(this.minEditorHeight, this.newHeight) + 'px';
-		this.standaloneCodeEditor.layout();
+		this.editor.layout();
 	}
 
 	private startDragResize_bind = this.startDragResize.bind(this);
@@ -61,23 +132,7 @@ class PostEditor {
 		this.editorHeight = Math.max(this.minEditorHeight, this.newHeight);
 		document.removeEventListener('mousemove', this.handleDragResize_bind);
 		document.removeEventListener('mouseup', this.completeDragResize_bind);
-		this.standaloneCodeEditor.layout();
-	}
-
-	// attaches a dragger to the bottom right of the theme/plugin editor to control editor height
-	private attachDragResize(editorHeightSet:number) {
-		this.newHeight = this.editorHeight = parseInt(this.wrapperElement.style.height);
-		// this.wrapperElement.style.height = this.editorHeight + 'px';
-
-		this.resizeHandle = document.getElementById('content-resize-handle')
-		if (!this.resizeHandle) { 
-			// if there is no resize handle, make one and append it
-			this.resizeHandle = document.createElement('div');
-			this.resizeHandle.className = 'wpCode-content-resize-handle';
-			this.resizeHandle.id = 'content-resize-handle';
-			this.wrapperElement.appendChild(this.resizeHandle);
-		}
-		this.resizeHandle.addEventListener('mousedown', this.startDragResize.bind(this));	
+		this.editor.layout();
 	}
 	//#endregion //
 }

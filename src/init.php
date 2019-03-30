@@ -11,6 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function wpCode_admin_enqueue_scripts () {
 	wp_enqueue_script( 'wpCode', WP_CODE_LIBS.'dist/app.bundle.js', array(), false, true );
+	// wp_enqueue_script('livereload', 'http://localhost:35729/livereload.js');
 	// wp_dequeue_script('$handle')
 
 	$wpCodeOptions = array(
