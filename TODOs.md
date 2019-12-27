@@ -1,4 +1,13 @@
-#TODOs
+# TODOs
+
+
+# Software design
+- single editor class that is connected/called/setup differentluy depending on the context
+- setup based on:
+	- editor load calls
+
+
+## NOTES
 - Options for `wpautop`?
 	- __TinyMCE Advanced:__ has an option to _Keep paragraph tags_
 		- this option disables `wpautop` content filter and re-implements it in js
@@ -13,5 +22,5 @@
 	- test on [beautifier.io](https://beautifier.io/)
 	- beautify for gutenberg-html-comment-json could run selectively in comment blocks as a separate operation
 
-#TADAs
+# TADAs
 Move todos here to be added to the changelog.
