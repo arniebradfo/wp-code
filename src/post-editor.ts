@@ -1,15 +1,13 @@
 declare const wpCodeOptions;
 
+const hideCss = 'visually-hidden'
+
 class PostEditor {
 
 	public editor: monaco.editor.IStandaloneCodeEditor;
 	public wrapperElement = document.createElement("div");
 	textTab: HTMLElement;
 	visualTab: HTMLElement;
-
-
-	// public get isVisualEnabled
-
 	
 	public get isVisualEnabled() : boolean {
 		// TODO: this is part of a wp.property somewhere
@@ -67,21 +65,27 @@ class PostEditor {
 	}
 
 	startEditor() {
+		console.log('startEditor');
 		// console.log(this.wrapperElement.style.display = '');
 		
-		// if (this.isTextTabActive) return;
-		this.textarea.style.display = 'none';
-		this.wrapperElement.style.display = '';
+		// if (this.isTextTabActive) return
+		// this.textarea.style.display = 'none'
+		// this.wrapperElement.style.display = ''
+		this.wrapperElement.classList.remove(hideCss)
+		this.textarea.classList.add(hideCss)
+
 		this.editor.setValue(this.textarea.value);
 
 		// restore selection state and position
 	}
 
-	stopEditor () {
+	stopEditor() {
 		console.log('stopEditor');
 
 		// if (this.isVisualTabActive) return;
-		this.wrapperElement.style.display = 'none';
+		// this.wrapperElement.style.display = 'none';
+		this.wrapperElement.classList.add(hideCss)
+		this.textarea.classList.remove(hideCss)
 	}
 
 	
