@@ -69,21 +69,18 @@ class PostEditor {
 		// console.log(this.wrapperElement.style.display = '');
 		
 		// if (this.isTextTabActive) return
-		// this.textarea.style.display = 'none'
-		// this.wrapperElement.style.display = ''
 		this.wrapperElement.classList.remove(hideCss)
 		this.textarea.classList.add(hideCss)
 
 		this.editor.setValue(this.textarea.value);
 
-		// restore selection state and position
+		// TODO: restore selection state and position
 	}
 
 	stopEditor() {
 		console.log('stopEditor');
 
 		// if (this.isVisualTabActive) return;
-		// this.wrapperElement.style.display = 'none';
 		this.wrapperElement.classList.add(hideCss)
 		this.textarea.classList.remove(hideCss)
 	}
