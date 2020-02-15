@@ -1,26 +1,48 @@
-# TODOs
 
+
+# TODOs:
+- build file that exports a finalized plugin
+- `wp.data.select( 'core/edit-post' ).getEditorMode()` is progress
+	- observe changes in [data](https://github.com/WordPress/gutenberg/issues/4674#issuecomment-404587928)
+	- `wp.data.subscribe(function(){console.log('data change')});`
+	- `wp.data.dispatch( 'core/editor' ).resetBlocks(wp.blocks.parse(editor.getTextArea().value))`
+
+- maybe use a monaco enqueued global of some sort with a separate typescript project. Load:
+	- monaco.min.js, possibly reduced to necessary stuff, if possible
+	- wp-code.min.js that depends on it. compiled from typescript file.
+
+## trying to get HESH to save the value changes from the textarea
+this is the [TextareaControl](https://wordpress.org/gutenberg/handbook/designers-developers/developers/components/textarea-control/) component
+```JS
+editor.on('change', function () { 
+	editor.save(); 
+	wp.data.dispatch( 'core/editor' ).resetBlocks(wp.blocks.parse(editor.getTextArea().value)) // this works
+
+	// // editor.getTextArea().focus();
+	// // window.setTimeout(function(){
+	// 	editor.save(); 
+	// // },10);
+	// console.log(Object.keys(editor.getTextArea()).find(
+	// 	function(prop) { return prop.startsWith("__reactEventHandlers"); }
+	// 	));
+	// var reactEventHandlers = Object.keys(editor.getTextArea()).find(
+	// 	function(prop) { return prop.startsWith("__reactEventHandlers"); }
+	// 	)
+		
+	// var spoofEvent = {currentTarget:{value: editor.getTextArea().value}};
+	// console.log(spoofEvent);
+	// console.dir(editor.getTextArea()[reactEventHandlers]);
+	// console.dir(editor.getTextArea()[reactEventHandlers].onChange(spoofEvent));
+	
+	// editor.getTextArea().dispatchEvent(new Event('change', { 'bubbles': true }));
+});
+```
 
 # Software design
 - single editor class that is connected/called/setup differentluy depending on the context
 - setup based on:
 	- editor load calls
 
-
-## NOTES
-- Options for `wpautop`?
-	- __TinyMCE Advanced:__ has an option to _Keep paragraph tags_
-		- this option disables `wpautop` content filter and re-implements it in js
-		- search for `noAutop` in _mce/wptadv/plugin.js_
-		- this causes other problems [apparently](https://wordpress.org/support/topic/plugin-tinymce-advanced-stop-removing-the-ltpgt-and-ltbr-gt-tags-cant-add-html-comments/#topic-1449977-replies)
-	- __Gutenberg__ maybe use the gutenberg js version of [`autop`](https://wordpress.org/gutenberg/handbook/designers-developers/developers/packages/packages-autop/) js in conjunction with the disabling the pp `wpautop` content filter
-	- Preserved HTML Editor Markup Plus Plugin ?
-- Formatting HTML
-	- [html tidy](http://www.html-tidy.org/) is [included](http://php.net/manual/en/tidy.examples.basic.php) in some php apparently
-	- [js beautify](https://github.com/beautify-web/js-beautify) is what [vs code uses](https://code.visualstudio.com/docs/languages/html#_formatting)
-	- replace shortcode `[brackets][/brackets]` with `<@brackets @></@brackets @>`, beautify, and then replace them back.
-	- test on [beautifier.io](https://beautifier.io/)
-	- beautify for gutenberg-html-comment-json could run selectively in comment blocks as a separate operation
 
 # TADAs
 Move todos here to be added to the changelog.
