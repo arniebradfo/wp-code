@@ -19,15 +19,17 @@ module.exports = {
 				test: /\.tsx?$/,
 				use: 'ts-loader',
 				exclude: /node_modules/
-			},
-			{
+			}, {
 				test: /\.css$/,
 				use: ['style-loader', 'css-loader']
+			}, {
+				test: /\.ttf$/,
+				use: ['file-loader']
 			}
 		]
 	},
 	resolve: {
-		extensions: [ '.tsx', '.ts', '.js' ]
+		extensions: ['.tsx', '.ts', '.js']
 	},
 	plugins: [
 		new MonacoWebpackPlugin(), // TODO: options
