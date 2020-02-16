@@ -35,6 +35,8 @@ class PostEditor {
 		this.stopEditor();
 		if (this.isTextTabActive)
 			this.startEditor();
+
+		window.addEventListener('load', this.attachRemapAddMedia.bind(this))
 	}
 
 	findElements() {
@@ -60,13 +62,15 @@ class PostEditor {
 		this.attachDragResize(500);
 	}
 
-	remapAddMedia() {
+	attachRemapAddMedia() {
 		var sendToVisualEditor = send_to_editor;
 		var sendToWhichEditor = (html: string) => {
 			if (this.isTextTabActive && wpActiveEditor === 'content') {
-				// this.editor.executeEdits('wpAddMediaButton', [{text:html}])
-				// 	editor.save();
-				// } else {
+				// https://stackoverflow.com/a/48764277/5648839
+				var selection = this.editor.getSelections()[0];
+				var range = new monaco.Range(selection.startLineNumber, selection.startColumn, selection.endLineNumber, selection.endColumn);
+				this.editor.executeEdits('wpAddMediaButton', [{ text: html, range: range }])
+			} else {
 				sendToVisualEditor(html);
 			}
 		};
