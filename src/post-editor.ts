@@ -8,22 +8,22 @@ class PostEditor {
 	public wrapperElement = document.createElement("div");
 	textTab: HTMLElement;
 	visualTab: HTMLElement;
-	
-	public get isVisualEnabled() : boolean {
-		// TODO: this is part of a wp.property somewhere
+
+	public get isVisualEnabled(): boolean {
+		// TODO: this is part of a wp.property somewhere?
 		return document.getElementById('content-tmce') != null;
 	}
-	public get isVisualTabActive() : boolean {
-		// TODO: this is part of a wp.property somewhere
+	public get isVisualTabActive(): boolean {
+		// TODO: this is part of a wp.property somewhere?
 		return document.getElementsByClassName('tmce-active')[0] != null;
 	}
-	public get isTextTabActive() : boolean {
-		return ! this.isVisualTabActive;
+	public get isTextTabActive(): boolean {
+		return !this.isVisualTabActive;
 	}
 
 	constructor(
 		public textarea?: HTMLTextAreaElement
-	) {		
+	) {
 		this.findElements();
 		this.createEditor();
 		this.attachEditorStateChanges();
@@ -33,8 +33,8 @@ class PostEditor {
 	}
 
 	findElements() {
-		this.textTab   = document.getElementById('content-html');
-		this.visualTab = document.getElementById('content-tmce');	
+		this.textTab = document.getElementById('content-html');
+		this.visualTab = document.getElementById('content-tmce');
 	}
 
 	createEditor() {
@@ -47,27 +47,41 @@ class PostEditor {
 			theme: 'vs-dark',
 		});
 
-		this.editor.onDidChangeModelContent( e => {
+		this.editor.onDidChangeModelContent(e => {
 			this.textarea.value = this.editor.getValue();
 		})
 
-		window.addEventListener('resize', e => this.editor.layout() );
+		window.addEventListener('resize', e => this.editor.layout());
 		this.attachDragResize(500);
 	}
 
+	remapAddMedia() {
+		// var oldSendToEditor = window.send_to_editor;
+		// var whichSendToEditor = function (html) {
+		// 	if (state.isActive() && window.wpActiveEditor === 'content') {
+		// 		editor.replaceSelection(html);
+		// 		editor.save();
+		// 	} else {
+		// 		oldSendToEditor(html);
+		// 	}
+		// };
+		// window.send_to_editor = whichSendToEditor;
+	}
+
+	//#region editor lifecycle // 
 	attachEditorStateChanges() {
 		this.textTab.addEventListener('click', e => {
-			window.setTimeout( this.startEditor.bind(this), 0 );
+			window.setTimeout(this.startEditor.bind(this), 0);
 		});
 		this.visualTab.addEventListener('click', e => {
-			window.setTimeout( this.stopEditor.bind(this), 0 );
+			window.setTimeout(this.stopEditor.bind(this), 0);
 		});
 	}
 
 	startEditor() {
 		console.log('startEditor');
 		// console.log(this.wrapperElement.style.display = '');
-		
+
 		// if (this.isTextTabActive) return
 		this.wrapperElement.classList.remove(hideCss)
 		this.textarea.classList.add(hideCss)
@@ -84,8 +98,8 @@ class PostEditor {
 		this.wrapperElement.classList.add(hideCss)
 		this.textarea.classList.remove(hideCss)
 	}
+	//#endregion
 
-	
 
 	//#region Drag Resize //
 	public isResizing = false;
@@ -96,19 +110,19 @@ class PostEditor {
 	private resizeHandle: HTMLElement;
 
 	// attaches a dragger to the bottom right of the theme/plugin editor to control editor height
-	private attachDragResize(editorHeightSet:number) {
+	private attachDragResize(editorHeightSet: number) {
 		this.newHeight = this.editorHeight = parseInt(this.wrapperElement.style.height);
 		// this.wrapperElement.style.height = this.editorHeight + 'px';
 
 		this.resizeHandle = document.getElementById('content-resize-handle')
-		if (!this.resizeHandle) { 
+		if (!this.resizeHandle) {
 			// if there is no resize handle, make one and append it
 			this.resizeHandle = document.createElement('div');
 			this.resizeHandle.className = 'wpCode-content-resize-handle';
 			this.resizeHandle.id = 'content-resize-handle';
 			this.wrapperElement.appendChild(this.resizeHandle);
 		}
-		this.resizeHandle.addEventListener('mousedown', this.startDragResize.bind(this));	
+		this.resizeHandle.addEventListener('mousedown', this.startDragResize.bind(this));
 	}
 
 	private handleDragResize_bind = this.handleDragResize.bind(this);

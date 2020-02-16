@@ -1,15 +1,22 @@
 
 
 # TODOs:
-- build file that exports a finalized plugin
+- remove quicktags
+- make the add-media buttons work
+- need a full-screen mode
+- options...
+
 - `wp.data.select( 'core/edit-post' ).getEditorMode()` is progress
 	- observe changes in [data](https://github.com/WordPress/gutenberg/issues/4674#issuecomment-404587928)
 	- `wp.data.subscribe(function(){console.log('data change')});`
 	- `wp.data.dispatch( 'core/editor' ).resetBlocks(wp.blocks.parse(editor.getTextArea().value))`
+- build file that exports a finalized plugin
 
 - maybe use a monaco enqueued global of some sort with a separate typescript project. Load:
 	- monaco.min.js, possibly reduced to necessary stuff, if possible
 	- wp-code.min.js that depends on it. compiled from typescript file.
+	- how would this be possible using webpack?
+
 
 ## trying to get HESH to save the value changes from the textarea
 this is the [TextareaControl](https://wordpress.org/gutenberg/handbook/designers-developers/developers/components/textarea-control/) component
