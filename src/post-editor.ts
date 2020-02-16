@@ -1,4 +1,9 @@
-declare const wpCodeOptions;
+declare const wpCodeOptions: {
+	// inserted via init.php
+	publicPath: string;
+}
+declare let send_to_editor: (html: string) => void; // inserts content into the editor
+declare let wpActiveEditor: 'content' | string; // not 100% on what this does
 
 const hideCss = 'visually-hidden'
 
@@ -56,17 +61,18 @@ class PostEditor {
 	}
 
 	remapAddMedia() {
-		// var oldSendToEditor = window.send_to_editor;
-		// var whichSendToEditor = function (html) {
-		// 	if (state.isActive() && window.wpActiveEditor === 'content') {
-		// 		editor.replaceSelection(html);
-		// 		editor.save();
-		// 	} else {
-		// 		oldSendToEditor(html);
-		// 	}
-		// };
-		// window.send_to_editor = whichSendToEditor;
+		var sendToVisualEditor = send_to_editor;
+		var sendToWhichEditor = (html: string) => {
+			if (this.isTextTabActive && wpActiveEditor === 'content') {
+				// this.editor.executeEdits('wpAddMediaButton', [{text:html}])
+				// 	editor.save();
+				// } else {
+				sendToVisualEditor(html);
+			}
+		};
+		send_to_editor = sendToWhichEditor;
 	}
+
 
 	//#region editor lifecycle // 
 	attachEditorStateChanges() {
