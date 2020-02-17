@@ -1,13 +1,25 @@
 import PostEditor from "./post-editor";
 import wpHtmlMonarchLanguage from "./wp-html.lang";
-import removeQTags from './quicktags';
+import './wp-code-styles.css';
 import { interceptSwitchEditors, interceptQuickTags } from "./intercept-editor";
 
-interceptSwitchEditors();
-interceptQuickTags();
+console.log('loaded wp-code plugin')
 
-// monaco.languages.register({ id: 'wpHtml' });
-// monaco.languages.setMonarchTokensProvider('wpHtml', <monaco.languages.IMonarchLanguage>wpHtmlMonarchLanguage);
+const wpCode: { // global
+    instances: PostEditor[]
+} = {
+    instances: []
+}
+
+interceptSwitchEditors();
+interceptQuickTags(settings => {
+    console.log('hijacked quicktags and ran wp-code, settings:\n', settings);
+    const textarea = document.getElementById(settings.id) as HTMLTextAreaElement;
+    wpCode.instances.push(new PostEditor(textarea))
+});
+
+monaco.languages.register({ id: 'wpHtml' });
+monaco.languages.setMonarchTokensProvider('wpHtml', <monaco.languages.IMonarchLanguage>wpHtmlMonarchLanguage);
 
 // removeQTags();
 

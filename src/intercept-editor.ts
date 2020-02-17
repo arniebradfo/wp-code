@@ -1,43 +1,26 @@
-import "./quicktags.css";
+import { Quicktags, SwitchEditors, Wp } from "../index";
 
-declare const wp: {
-    editor: {
-        initialize: (
-            id: string,
-            settings: {
-                tinymce: any | true,
-                quicktags: any | true,
-            }
-        ) => void,
-        remove: (id: string) => void,
-        getContent: (id: string) => string // returns editor content
-    }
-}
+declare let quicktags: Quicktags;
+let switchEditors: SwitchEditors;
+declare const wp: Wp;
 
-declare let quicktags: (
-    settings: {
-        id: string, // the HTML ID of the textarea, required
-        buttons: string   // Comma separated list of the names of the default buttons to show. Optional.
-    }) => any;
 
-declare let switchEditors
-
-export function interceptQuickTags() {
-    function hijackQuickTags(settings) {
-        console.log('hijackQuickTags with settings:\n', settings);
-    }
-    quicktags = hijackQuickTags
+export function interceptQuickTags(hijackQuickTagsCallback: Quicktags, ) {
+    quicktags = hijackQuickTagsCallback
 }
 
 
 export function interceptSwitchEditors() {
 
+    if (switchEditors == null) return;
+
     var oldGo = switchEditors.go
     switchEditors.go = (id, mode) => {
         console.log(id, mode);
-        oldGo(id, mode)
+        oldGo(id, mode);
     }
 
+    // this hijacks the SwitchEditors.switchEditors() click event setup in SwitchEditors.init()
     const oldSwitchEditorTabClass = 'wp-switch-editor'
     const newSwitchEditorTabClass = oldSwitchEditorTabClass + '-stolen'
     let switchEditorTabs = document.querySelectorAll('.' + oldSwitchEditorTabClass)
