@@ -7,23 +7,27 @@
 
 export interface Wp {
     editor: {
-        initialize: (
-            id: string,
-            settings: {
-                tinymce: any | true,
-                quicktags: any | true,
-            }
-        ) => void,
+        initialize: WpEditorInitalize,
         remove: (id: string) => void,
         getContent: (id: string) => string // returns editor content
     }
+}
+
+export interface WpEditorInitalize {
+    (
+        id: string,
+        settings: {
+            tinymce: any | true,
+            quicktags: any | true,
+        }
+    ): void
 }
 
 export interface Quicktags {
     (settings: {
         id: string, // the HTML ID of the textarea, required
         buttons: string // Comma separated list of the names of the default buttons to show. Optional.
-    }): any;
+    }): any
 }
 
 export interface SwitchEditors {

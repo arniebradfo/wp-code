@@ -1,45 +1,61 @@
-import { Quicktags, SwitchEditors, Wp } from "../index";
+import { Quicktags, SwitchEditors, Wp, WpEditorInitalize } from "../index";
 
 declare let quicktags: Quicktags;
-let switchEditors: SwitchEditors;
+declare let switchEditors: SwitchEditors;
 declare const wp: Wp;
 
+// TODO: create a custom event for these?
+// https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events
 
 export function interceptQuickTags(hijackQuickTagsCallback: Quicktags, ) {
     quicktags = hijackQuickTagsCallback
 }
 
+export function interceptEditor(editorInitCallback: WpEditorInitalize) {
+    // this doesn't seem to run soon enough...
+    const oldWpEditorInitalize = wp.editor.initialize
+    wp.editor.initialize = (id, settings) => {
+        editorInitCallback(id, settings)
+        oldWpEditorInitalize(id, settings)
+    }
+}
 
 export function interceptSwitchEditors() {
 
-    if (switchEditors == null) return;
+    // if (switchEditors == null) return;
 
-    var oldGo = switchEditors.go
-    switchEditors.go = (id, mode) => {
-        console.log(id, mode);
-        oldGo(id, mode);
-    }
+    try {
 
-    // this hijacks the SwitchEditors.switchEditors() click event setup in SwitchEditors.init()
-    const oldSwitchEditorTabClass = 'wp-switch-editor'
-    const newSwitchEditorTabClass = oldSwitchEditorTabClass + '-stolen'
-    let switchEditorTabs = document.querySelectorAll('.' + oldSwitchEditorTabClass)
-
-    for (let i = 0; i < switchEditorTabs.length; i++) {
-        const tab = switchEditorTabs[i];
-        tab.classList.replace(oldSwitchEditorTabClass, newSwitchEditorTabClass)
-    }
-
-    document.addEventListener('click', (event) => {
-        var id, mode,
-            target = event.target as HTMLElement
-
-        if (target.classList.contains(newSwitchEditorTabClass)) {
-            id = target.dataset.wpEditorId // .attr('data-wp-editor-id');
-            mode = target.classList.contains('switch-tmce') ? 'tmce' : 'html';
-            switchEditors.go(id, mode);
+        var oldGo = switchEditors.go
+        switchEditors.go = (id, mode) => {
+            console.log(id, mode);
+            oldGo(id, mode);
         }
-    });
+
+        // this hijacks the SwitchEditors.switchEditors() click event setup in SwitchEditors.init()
+        const oldSwitchEditorTabClass = 'wp-switch-editor'
+        const newSwitchEditorTabClass = oldSwitchEditorTabClass + '-stolen'
+        let switchEditorTabs = document.querySelectorAll('.' + oldSwitchEditorTabClass)
+
+        for (let i = 0; i < switchEditorTabs.length; i++) {
+            const tab = switchEditorTabs[i];
+            tab.classList.replace(oldSwitchEditorTabClass, newSwitchEditorTabClass)
+        }
+
+        document.addEventListener('click', (event) => {
+            var id, mode,
+                target = event.target as HTMLElement
+
+            if (target.classList.contains(newSwitchEditorTabClass)) {
+                id = target.dataset.wpEditorId // .attr('data-wp-editor-id');
+                mode = target.classList.contains('switch-tmce') ? 'tmce' : 'html';
+                switchEditors.go(id, mode);
+            }
+        });
+
+    } catch (error) {
+
+    }
 
 }
 
