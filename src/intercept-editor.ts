@@ -1,3 +1,5 @@
+import "./quicktags.css";
+
 declare const wp: {
     editor: {
         initialize: (
@@ -19,9 +21,16 @@ declare let quicktags: (
     }) => any;
 
 declare let switchEditors
-declare let SwitchEditors
 
-function interceptEditor() {
+export function interceptQuickTags() {
+    function hijackQuickTags(settings) {
+        console.log('hijackQuickTags with settings:\n', settings);
+    }
+    quicktags = hijackQuickTags
+}
+
+
+export function interceptSwitchEditors() {
 
     var oldGo = switchEditors.go
     switchEditors.go = (id, mode) => {
@@ -51,4 +60,4 @@ function interceptEditor() {
 
 }
 
-export default interceptEditor;
+
