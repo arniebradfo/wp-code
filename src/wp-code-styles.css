@@ -25,3 +25,76 @@
     padding: 3px 8px 4px;
     border: 1px solid #e5e5e5;
 }
+
+/* UNSET WP STYLES 
+ * unset .wp-core-ui .button styles?
+ * TODO: move this to another file? 
+ */
+.monaco-editor .button{
+    color: inherit;
+    border-color: inherit;
+    background: inherit;
+    vertical-align: inherit;
+    display: inherit;
+    text-decoration: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    min-height: inherit;
+    margin: inherit;
+    padding: inherit;
+    cursor: inherit;
+    border-width: inherit;
+    border-style: inherit;
+    -webkit-appearance: inherit;
+    border-radius: inherit;
+    white-space: inherit;
+    box-sizing: inherit;
+}
+
+/* .monaco-editor .button:disabled, */
+.monaco-editor .button.disabled{
+    color: inherit!important;
+    border-color: inherit!important;
+    background: inherit!important;
+    box-shadow: inherit!important;
+    text-shadow: inherit!important;
+    cursor: inherit;
+    transform: inherit!important;
+}
+
+.wp-core-ui .button:hover {
+    background: unset;
+    border-color: unset;
+    color: unset;
+}
+
+.wp-core-ui .button:active {
+    background: unset;
+    border-color: unset;
+    box-shadow: unset;
+}
+
+.wp-core-ui .button.focus, 
+.wp-core-ui .button:focus {
+    background: unset;
+    border-color: unset;
+    color: unset;
+    box-shadow: unset;
+    outline: unset;
+    outline-offset: unset;
+}
+
+.monaco-editor .codicon[class*='codicon-'] {
+    font: normal normal normal 16px/1 codicon;
+    /* display: inline-block;
+    text-decoration: none;
+    text-rendering: auto;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    -webkit-user-select: none; */
+}
+
+.monaco-editor textarea:focus{
+    box-shadow: inherit;
+}
