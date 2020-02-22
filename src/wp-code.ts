@@ -11,6 +11,15 @@ const wpCode: { // global
     instances: []
 }
 
+
+// Really wish this worked??
+declare const jQuery;
+const $ = jQuery;
+console.log($(document).on('wp-before-tinymce-init', (event, init) => console.log(event, init)))
+console.log($(document).on('wp-before-quicktags-init', (event, init) => console.log(event, init)))
+// console.log($(document).one('wp-before-tinymce-init.text-widget-init', (event, init) => console.log(event, init)))
+$(document).trigger('wp-before-tinymce-init') // ???
+
 // interceptSwitchEditors();
 interceptQuickTags(settings => {
     console.log('hijacked quicktags and ran wp-code, settings:\n', settings);
