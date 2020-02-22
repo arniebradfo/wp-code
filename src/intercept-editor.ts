@@ -22,8 +22,6 @@ export function interceptEditor(editorInitCallback: WpEditorInitialize) {
 
 export function interceptSwitchEditors() {
 
-    // if (switchEditors == null) return;
-
     try {
 
         var oldGo = switchEditors.go

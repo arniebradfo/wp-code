@@ -1,4 +1,4 @@
-import PostEditor from "./post-editor";
+import PostEditor from "./editor-types/post-editor";
 import wpHtmlMonarchLanguage from "./wp-html.lang";
 import './wp-code-styles.css';
 import { interceptSwitchEditors, interceptQuickTags, interceptEditor } from "./intercept-editor";
@@ -11,15 +11,15 @@ const wpCode: { // global
     instances: []
 }
 
-interceptSwitchEditors();
+// interceptSwitchEditors();
 interceptQuickTags(settings => {
     console.log('hijacked quicktags and ran wp-code, settings:\n', settings);
     const textarea = document.getElementById(settings.id) as HTMLTextAreaElement;
-    wpCode.instances.push(new PostEditor(textarea))
+    wpCode.instances.push(new PostEditor(textarea, settings.id))
 });
-interceptEditor((id, settings) => {
-    console.log('hijacked editor ', '\nid:\n', id, '\nsettings:\n', settings);
-})
+// interceptEditor((id, settings) => {
+//     console.log('hijacked editor ', '\nid:\n', id, '\nsettings:\n', settings);
+// })
 
 monaco.languages.register({ id: 'wpHtml' });
 monaco.languages.setMonarchTokensProvider('wpHtml', <monaco.languages.IMonarchLanguage>wpHtmlMonarchLanguage);

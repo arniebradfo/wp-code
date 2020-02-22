@@ -19,3 +19,31 @@ override-able js could is:
 - `editorExpand`
 
 there are also several jquery events we can tap into
+
+
+## GUTENBERG: trying to get HESH to save the value changes from the textarea
+this is the [TextareaControl](https://wordpress.org/gutenberg/handbook/designers-developers/developers/components/textarea-control/) component
+```JS
+editor.on('change', function () { 
+	editor.save(); 
+	wp.data.dispatch( 'core/editor' ).resetBlocks(wp.blocks.parse(editor.getTextArea().value)) // this works
+
+	// // editor.getTextArea().focus();
+	// // window.setTimeout(function(){
+	// 	editor.save(); 
+	// // },10);
+	// console.log(Object.keys(editor.getTextArea()).find(
+	// 	function(prop) { return prop.startsWith("__reactEventHandlers"); }
+	// 	));
+	// var reactEventHandlers = Object.keys(editor.getTextArea()).find(
+	// 	function(prop) { return prop.startsWith("__reactEventHandlers"); }
+	// 	)
+		
+	// var spoofEvent = {currentTarget:{value: editor.getTextArea().value}};
+	// console.log(spoofEvent);
+	// console.dir(editor.getTextArea()[reactEventHandlers]);
+	// console.dir(editor.getTextArea()[reactEventHandlers].onChange(spoofEvent));
+	
+	// editor.getTextArea().dispatchEvent(new Event('change', { 'bubbles': true }));
+});
+```
