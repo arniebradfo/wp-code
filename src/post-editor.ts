@@ -50,6 +50,7 @@ class PostEditor {
 		this.editor = monaco.editor.create(this.wrapperElement, {
 			// value: this.textarea.value,
 			// language: 'html',
+			// scrollBeyondLastLine: false,
 			language: 'wpHtml',
 			theme: 'vs-dark',
 		});

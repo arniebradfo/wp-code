@@ -7,13 +7,13 @@
 
 export interface Wp {
     editor: {
-        initialize: WpEditorInitalize,
+        initialize: WpEditorInitialize,
         remove: (id: string) => void,
         getContent: (id: string) => string // returns editor content
     }
 }
 
-export interface WpEditorInitalize {
+export interface WpEditorInitialize {
     (
         id: string,
         settings: {

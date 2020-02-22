@@ -1,4 +1,4 @@
-import { Quicktags, SwitchEditors, Wp, WpEditorInitalize } from "../index";
+import { Quicktags, SwitchEditors, Wp, WpEditorInitialize } from "../index";
 
 declare let quicktags: Quicktags;
 declare let switchEditors: SwitchEditors;
@@ -11,12 +11,12 @@ export function interceptQuickTags(hijackQuickTagsCallback: Quicktags, ) {
     quicktags = hijackQuickTagsCallback
 }
 
-export function interceptEditor(editorInitCallback: WpEditorInitalize) {
+export function interceptEditor(editorInitCallback: WpEditorInitialize) {
     // this doesn't seem to run soon enough...
-    const oldWpEditorInitalize = wp.editor.initialize
+    const oldWpEditorInitialize = wp.editor.initialize
     wp.editor.initialize = (id, settings) => {
         editorInitCallback(id, settings)
-        oldWpEditorInitalize(id, settings)
+        oldWpEditorInitialize(id, settings)
     }
 }
 

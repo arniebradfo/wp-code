@@ -1,10 +1,10 @@
 
 
 # TODOs:
-- remove quicktags
-- make the add-media buttons work
+- options editor
 - need a full-screen mode
-- options...
+- PostEditor extends SimpleEditor
+- `.wp-core-ui` and `.monaco-editor` both style with the `.button` class
 
 - `wp.data.select( 'core/edit-post' ).getEditorMode()` is progress
 	- observe changes in [data](https://github.com/WordPress/gutenberg/issues/4674#issuecomment-404587928)
@@ -46,10 +46,12 @@ editor.on('change', function () {
 ```
 
 # Software design
-- single editor class that is connected/called/setup differentluy depending on the context
+- single editor class that is connected/called/setup differently depending on the context
 - setup based on:
 	- editor load calls
 
 
 # TADAs
 Move todos here to be added to the changelog.
+- remove quicktags
+- make the add-media buttons work
