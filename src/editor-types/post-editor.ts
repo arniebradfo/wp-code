@@ -31,7 +31,8 @@ export default class PostEditor extends SimpleEditor {
 		public textarea: HTMLTextAreaElement,
 		public id: string
 	) {
-		super(textarea, id, false);
+		super(textarea, id, false, true);
+		this.wrapperElement.classList.add('wpCode-monaco-wrapper--post-editor')
 
 		this.findElements();
 		this.attachEditorStateChanges();

@@ -6,6 +6,14 @@
 - PostEditor extends SimpleEditor
 - `.wp-core-ui` and `.monaco-editor` both style with the `.button` class
 - scrolling is annoying - monaco seems to eat scroll events
+	- document does not fire any scroll events over monaco scroll bar
+	- solution? 
+		- place something z-indexed over monaco to capture if monaco can't scroll?
+		- but this blocks the editor?
+		- only place it when monaco is at scrollTop or scrollbottom?
+		- remove it on mousemove? or click? or anything else?
+- make individual use cases that are for everything? comments etc...
+
 
 - `wp.data.select( 'core/edit-post' ).getEditorMode()` is progress
 	- observe changes in [data](https://github.com/WordPress/gutenberg/issues/4674#issuecomment-404587928)

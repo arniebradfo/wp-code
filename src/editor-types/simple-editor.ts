@@ -1,4 +1,5 @@
 import EditorDragResize from "./drag-resize";
+import { EDITOR_MIN_HEIGHT } from "../constants";
 
 
 // Loads when there is only a quicktags textarea, with the visual tab
@@ -16,8 +17,10 @@ export default class SimpleEditor {
     constructor(
         public textarea: HTMLTextAreaElement,
         public id: string,
-        startEditorImmediately: boolean = true
+        startEditorImmediately: boolean = true,
+        private lookForResizeHandle: boolean = false
     ) {
+        // return; // turn off for debug 
         this.createEditor();
         this.stopEditor();
         if (startEditorImmediately)
@@ -25,12 +28,18 @@ export default class SimpleEditor {
     }
 
     createEditor() {
-        this.wrapperElement.style.height = this.textarea.style.height || '500px'; // TODO: where does this come from?
+        const textareaHeight = this.textarea.getBoundingClientRect().height
+        this.wrapperElement.id = 'wpCode-' + this.id
+        this.wrapperElement.classList.add('wpCode-monaco-wrapper')
+        console.log(this.wrapperElement, textareaHeight);
+
+        this.wrapperElement.style.height = Math.max(textareaHeight, EDITOR_MIN_HEIGHT) + 'px';
+
         this.textarea.parentElement.appendChild(this.wrapperElement);
         this.editor = monaco.editor.create(this.wrapperElement, {
             // value: this.textarea.value,
             // language: 'html',
-            // scrollBeyondLastLine: false,
+            scrollBeyondLastLine: false,
             language: 'wpHtml',
             theme: 'vs-dark',
         });
@@ -40,26 +49,18 @@ export default class SimpleEditor {
         })
 
         window.addEventListener('resize', e => this.editor.layout()); // TODO: debounce or throttle
-        this.dragResize = new EditorDragResize(this.editor, this.wrapperElement)
+        this.dragResize = new EditorDragResize(this.editor, this.wrapperElement, this.lookForResizeHandle)
     }
 
     startEditor() {
         console.log('startEditor: ', this.id);
-        // console.log(this.wrapperElement.style.display = '');
-
-        // if (this.isTextTabActive) return
         this.wrapperElement.classList.remove(this.hideCss)
         this.textarea.classList.add(this.hideCss)
-
         this.editor.setValue(this.textarea.value);
-
-        // TODO: restore selection state and position
     }
 
     stopEditor() {
         console.log('stopEditor: ', this.id);
-
-        // if (this.isVisualTabActive) return;
         this.wrapperElement.classList.add(this.hideCss)
         this.textarea.classList.remove(this.hideCss)
     }

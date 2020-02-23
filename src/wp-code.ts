@@ -1,4 +1,5 @@
 import PostEditor from "./editor-types/post-editor";
+import SimpleEditor from "./editor-types/simple-editor";
 import wpHtmlMonarchLanguage from "./wp-html.lang";
 import './wp-code-styles.css';
 import { interceptSwitchEditors, interceptQuickTags, interceptEditor } from "./intercept-editor";
@@ -6,38 +7,28 @@ import { interceptSwitchEditors, interceptQuickTags, interceptEditor } from "./i
 console.log('loaded wp-code plugin')
 
 const wpCode: { // global
-    instances: PostEditor[]
+    instances: (PostEditor | SimpleEditor)[]
 } = {
     instances: []
 }
 
-
-// Really wish this worked??
-declare const jQuery;
-const $ = jQuery;
-console.log($(document).on('wp-before-tinymce-init', (event, init) => console.log(event, init)))
-console.log($(document).on('wp-before-quicktags-init', (event, init) => console.log(event, init)))
-// console.log($(document).one('wp-before-tinymce-init.text-widget-init', (event, init) => console.log(event, init)))
-$(document).trigger('wp-before-tinymce-init') // ???
-
-// interceptSwitchEditors();
-interceptQuickTags(settings => {
-    console.log('hijacked quicktags and ran wp-code, settings:\n', settings);
-    const textarea = document.getElementById(settings.id) as HTMLTextAreaElement;
-    wpCode.instances.push(new PostEditor(textarea, settings.id))
-});
-// interceptEditor((id, settings) => {
-//     console.log('hijacked editor ', '\nid:\n', id, '\nsettings:\n', settings);
-// })
-
 monaco.languages.register({ id: 'wpHtml' });
 monaco.languages.setMonarchTokensProvider('wpHtml', <monaco.languages.IMonarchLanguage>wpHtmlMonarchLanguage);
 
-// removeQTags();
+interceptQuickTags(settings => {
+    console.log('hijacked quicktags and ran wp-code, settings:\n', settings);
+    const textarea = document.getElementById(settings.id) as HTMLTextAreaElement;
+    const editorType = settings.id === 'content' ? PostEditor : SimpleEditor;
+    wpCode.instances.push(new editorType(textarea, settings.id))
+});
 
-// // start the post editor
-// const textarea: HTMLTextAreaElement = document.querySelector('textarea#content');
-// let postEditor: PostEditor;
-// if (textarea) postEditor = new PostEditor(textarea);
+// interceptSwitchEditors();
+// interceptEditor((id, settings) => console.log('hijacked editor ', '\nid:\n', id, '\nsettings:\n', settings)
 
-
+// Really wish this worked??
+// declare const jQuery;
+// const $ = jQuery;
+// console.log($(document).on('wp-before-tinymce-init', (event, init) => console.log(event, init)))
+// console.log($(document).on('wp-before-quicktags-init', (event, init) => console.log(event, init)))
+// console.log($(document).one('wp-before-tinymce-init.text-widget-init', (event, init) => console.log(event, init)))
+// $(document).trigger('wp-before-tinymce-init') // ???
