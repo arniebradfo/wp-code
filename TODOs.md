@@ -12,6 +12,8 @@
 		- but this blocks the editor?
 		- only place it when monaco is at scrollTop or scrollbottom?
 		- remove it on mousemove? or click? or anything else?
+		- wheel event with usecapture works
+		
 - make individual use cases that are for everything? comments etc...
 
 

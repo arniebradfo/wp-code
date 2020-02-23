@@ -3,7 +3,7 @@ import { EDITOR_MIN_HEIGHT } from "../constants";
 
 
 // Loads when there is only a quicktags textarea, with the visual tab
-// like comment replies
+// like comment replies - note even...
 
 export default class SimpleEditor {
 
@@ -31,7 +31,6 @@ export default class SimpleEditor {
         const textareaHeight = this.textarea.getBoundingClientRect().height
         this.wrapperElement.id = 'wpCode-' + this.id
         this.wrapperElement.classList.add('wpCode-monaco-wrapper')
-        console.log(this.wrapperElement, textareaHeight);
 
         this.wrapperElement.style.height = Math.max(textareaHeight, EDITOR_MIN_HEIGHT) + 'px';
 
@@ -48,6 +47,9 @@ export default class SimpleEditor {
             this.textarea.value = this.editor.getValue();
         })
 
+        // this.editor.onDidScrollChange(e => console.log(e)); // only changes 
+        this.wrapperElement.addEventListener('wheel', this.maybePageScroll.bind(this), true)
+
         window.addEventListener('resize', e => this.editor.layout()); // TODO: debounce or throttle
         this.dragResize = new EditorDragResize(this.editor, this.wrapperElement, this.lookForResizeHandle)
     }
@@ -63,6 +65,26 @@ export default class SimpleEditor {
         console.log('stopEditor: ', this.id);
         this.wrapperElement.classList.add(this.hideCss)
         this.textarea.classList.remove(this.hideCss)
+    }
+
+    maybePageScroll(event) {
+        console.log(
+            // this.editor.getScrollHeight(),
+            // this.editor.getScrollTop(), 
+            // this.editor.getContentHeight(), 
+            // this.editor.getLayoutInfo().height, 
+            // this.editor.getLayoutInfo().height + this.editor.getScrollTop()
+        );
+
+        if (this.editor.getScrollHeight() > this.editor.getContentHeight()) // at top
+            console.log('scroll top and bottom');
+        else if (this.editor.getScrollTop() === 0) // at bottom
+            console.log('at top');
+        else if (this.editor.getLayoutInfo().height + this.editor.getScrollTop() === this.editor.getScrollHeight())
+            console.log('at bottom');
+        else // monaco scroll
+            console.log('monaco scroll');
+
     }
 
 
