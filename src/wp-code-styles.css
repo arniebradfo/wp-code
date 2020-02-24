@@ -20,6 +20,18 @@
     right: 3px;
 }
 
+.scrollTarget{
+    position: relative;
+}
+.scrollTarget:after{
+    content: '';
+    position: absolute;
+    top:0;
+    bottom:0;
+    left: 0;
+    right: 0;
+}
+
 /* copy verbatim of .wp-switch-editor */
 /* .wp-switch-editor-stolen {
     float: left;

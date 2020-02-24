@@ -48,7 +48,7 @@ export default class SimpleEditor {
         })
 
         // this.editor.onDidScrollChange(e => console.log(e)); // only changes 
-        this.wrapperElement.addEventListener('wheel', this.maybePageScroll.bind(this), true)
+        this.wrapperElement.addEventListener('wheel', this.maybeScrollPage.bind(this), true)
 
         window.addEventListener('resize', e => this.editor.layout()); // TODO: debounce or throttle
         this.dragResize = new EditorDragResize(this.editor, this.wrapperElement, this.lookForResizeHandle)
@@ -67,25 +67,77 @@ export default class SimpleEditor {
         this.textarea.classList.remove(this.hideCss)
     }
 
-    maybePageScroll(event) {
-        console.log(
-            // this.editor.getScrollHeight(),
-            // this.editor.getScrollTop(), 
-            // this.editor.getContentHeight(), 
-            // this.editor.getLayoutInfo().height, 
-            // this.editor.getLayoutInfo().height + this.editor.getScrollTop()
-        );
+
+    // TODO: Abstract this into its own class?
+    // TODO: rename to scrollEditor vs scrollPage terminology
+    // TODO: tune
+
+    getEditorScrolledTo(): ScrolledTo {
+        // console.log(
+        // this.editor.getScrollHeight(),
+        // this.editor.getScrollTop(), 
+        // this.editor.getContentHeight(), 
+        // this.editor.getLayoutInfo().height, 
+        // this.editor.getLayoutInfo().height + this.editor.getScrollTop()
+        // );
 
         if (this.editor.getScrollHeight() > this.editor.getContentHeight()) // at top
-            console.log('scroll top and bottom');
-        else if (this.editor.getScrollTop() === 0) // at bottom
-            console.log('at top');
+            return ScrolledTo.CantScroll;
+        else if (this.editor.getScrollTop() === 0)
+            return ScrolledTo.Top;
         else if (this.editor.getLayoutInfo().height + this.editor.getScrollTop() === this.editor.getScrollHeight())
-            console.log('at bottom');
-        else // monaco scroll
-            console.log('monaco scroll');
-
+            return ScrolledTo.Bottom;
+        else
+            return ScrolledTo.Middle;
     }
 
+    maybeScrollPage(event: WheelEvent) {
+
+        const scrolledTo = this.getEditorScrolledTo()
+        if (scrolledTo === ScrolledTo.Middle)
+            return
+
+        const scrollDirection = event.deltaY > 0 ? ScrollDirection.Down : ScrollDirection.Up;
+
+        if (scrolledTo === ScrolledTo.CantScroll)
+            this.addPageScroll()
+        else if (scrollDirection === ScrollDirection.Down && scrolledTo === ScrolledTo.Bottom)
+            this.addPageScroll()
+        else if (scrollDirection === ScrollDirection.Up && scrolledTo === ScrolledTo.Top)
+            this.addPageScroll()
+
+        this.maybeStopScrollPage()
+    }
+
+    private isScrolling: number;
+    maybeStopScrollPage() {
+        window.clearTimeout(this.isScrolling);
+        this.isScrolling = window.setTimeout(this.removePageScroll.bind(this), 66);
+    }
+
+    removePageScroll() {
+        this.wrapperElement.classList.remove('scrollTarget')
+    }
+    addPageScroll() {
+        this.wrapperElement.classList.add('scrollTarget')
+    }
 
 }
+
+enum ScrolledTo {
+    CantScroll,
+    Top,
+    Middle,
+    Bottom
+}
+enum ScrollDirection {
+    Up,
+    Down
+}
+
+// Listen for scroll events
+window.addEventListener('scroll', function (event) {
+
+
+
+}, false);
