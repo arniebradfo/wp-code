@@ -47,3 +47,8 @@ editor.on('change', function () {
 	// editor.getTextArea().dispatchEvent(new Event('change', { 'bubbles': true }));
 });
 ```
+
+- `wp.data.select( 'core/edit-post' ).getEditorMode()` is progress
+	- observe changes in [data](https://github.com/WordPress/gutenberg/issues/4674#issuecomment-404587928)
+	- `wp.data.subscribe(function(){console.log('data change')});`
+	- `wp.data.dispatch( 'core/editor' ).resetBlocks(wp.blocks.parse(editor.getTextArea().value))`

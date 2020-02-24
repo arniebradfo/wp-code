@@ -3,26 +3,13 @@
 # TODOs:
 - options editor
 - need a full-screen mode
-- PostEditor extends SimpleEditor
-- `.wp-core-ui` and `.monaco-editor` both style with the `.button` class
-- scrolling is annoying - monaco seems to eat scroll events
-	- document does not fire any scroll events over monaco scroll bar
-	- solution? 
-		- place something z-indexed over monaco to capture if monaco can't scroll?
-		- but this blocks the editor?
-		- only place it when monaco is at scrollTop or scrollbottom?
-		- remove it on mousemove? or click? or anything else?
-		- wheel event with usecapture works
-		
-- make individual use cases that are for everything? comments etc...
+- refine scroll switching `ScrollEditorOrPage` class
+- make individual use cases that extend `SimpleEditor`
+	- comments
+	- find more...
 
-
-- `wp.data.select( 'core/edit-post' ).getEditorMode()` is progress
-	- observe changes in [data](https://github.com/WordPress/gutenberg/issues/4674#issuecomment-404587928)
-	- `wp.data.subscribe(function(){console.log('data change')});`
-	- `wp.data.dispatch( 'core/editor' ).resetBlocks(wp.blocks.parse(editor.getTextArea().value))`
+# TODO later
 - build file that exports a finalized plugin
-
 - maybe use a monaco enqueued global of some sort with a separate typescript project. Load:
 	- monaco.min.js, possibly reduced to necessary stuff, if possible
 	- wp-code.min.js that depends on it. compiled from typescript file.
@@ -38,3 +25,8 @@
 Move todos here to be added to the changelog.
 - remove quicktags
 - make the add-media buttons work
+- editor resizing works
+- scrolling switches between editor and page
+- PostEditor extends SimpleEditor
+- css overrides to fix: `.wp-core-ui` and `.monaco-editor` both style with the `.button` class
+
