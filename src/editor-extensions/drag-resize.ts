@@ -1,7 +1,8 @@
 import { EDITOR_MIN_HEIGHT } from '../utils/constants'
 import './drag-resize.css';
+import SimpleEditor from '../editor-types/simple-editor';
 
-export default class EditorDragResize {
+export default class DragResizeExtension {
 
     public isResizing = false;
     private yStartPosition = 0;
@@ -11,26 +12,23 @@ export default class EditorDragResize {
     private resizeHandle: HTMLElement;
 
     constructor(
-        public editor: monaco.editor.IStandaloneCodeEditor,
-        public wrapperElement: HTMLElement,
-        //TODO: make this constructor take an SimpleEditor param
-        private lookForResizeHandle: boolean = false
+        private wpEditor: SimpleEditor
     ) {
         this.attachDragResize()
     }
 
     // attaches a dragger to the bottom right of the theme/plugin editor to control editor height
     private attachDragResize(editorHeightSet: number = 500) {
-        this.newHeight = this.editorHeight = parseInt(this.wrapperElement.style.height) || editorHeightSet;
+        this.newHeight = this.editorHeight = parseInt(this.wpEditor.wrapperElement.style.height) || editorHeightSet;
 
-        if (this.lookForResizeHandle)
+        if (this.wpEditor.lookForResizeHandle)
             this.resizeHandle = document.getElementById('content-resize-handle')
 
         if (!this.resizeHandle) {
             // if there is no resize handle, make one and append it
             this.resizeHandle = document.createElement('div');
             this.resizeHandle.className = 'wpCode-content-resize-handle';
-            this.wrapperElement.appendChild(this.resizeHandle);
+            this.wpEditor.wrapperElement.appendChild(this.resizeHandle);
         }
         this.resizeHandle.addEventListener('mousedown', this.startDragResize_bind);
     }
@@ -38,8 +36,8 @@ export default class EditorDragResize {
     private handleDragResize_bind = this.handleDragResize.bind(this);
     private handleDragResize(event) {
         this.newHeight = this.editorHeight + (event.pageY - this.yStartPosition);
-        this.wrapperElement.style.height = Math.max(this.editorMinHeight, this.newHeight) + 'px';
-        this.editor.layout();
+        this.wpEditor.wrapperElement.style.height = Math.max(this.editorMinHeight, this.newHeight) + 'px';
+        this.wpEditor.editor.layout();
     }
 
     private startDragResize_bind = this.startDragResize.bind(this);
@@ -57,6 +55,6 @@ export default class EditorDragResize {
         this.editorHeight = Math.max(this.editorMinHeight, this.newHeight);
         document.removeEventListener('mousemove', this.handleDragResize_bind);
         document.removeEventListener('mouseup', this.completeDragResize_bind);
-        this.editor.layout();
+        this.wpEditor.editor.layout();
     }
 }

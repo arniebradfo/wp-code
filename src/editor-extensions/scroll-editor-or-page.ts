@@ -3,8 +3,9 @@ import './scroll-editor-or-page.css';
 
 // TODO: rename to scrollEditor vs scrollPage terminology
 // TODO: test on touch?
+// TODO: better scrollEditor detection switching
 
-export default class ScrollEditorOrPage {
+export default class ScrollEditorOrPageExtension {
 
     private timing: number = 33;
     private scrollCssClass = 'scrollTarget';
