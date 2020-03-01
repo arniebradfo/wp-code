@@ -1,4 +1,4 @@
-import './src/public-path';
+import './src/utils/public-path';
 import 'monaco-editor'; // so monaco will be loaded as a global
 import './src/wp-code';
 

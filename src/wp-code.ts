@@ -1,8 +1,8 @@
 import PostEditor from "./editor-types/post-editor";
 import SimpleEditor from "./editor-types/simple-editor";
-import wpHtmlMonarchLanguage from "./wp-html.lang";
-import './wp-code-styles.css';
-import { interceptSwitchEditors, interceptQuickTags, interceptEditor } from "./intercept-editor";
+import wpHtmlMonarchLanguage from "./langs/wp-html.lang";
+import './wp-code.css';
+import { interceptSwitchEditors, interceptQuickTags, interceptEditor } from "./utils/intercept-editor";
 
 console.log('loaded wp-code plugin')
 

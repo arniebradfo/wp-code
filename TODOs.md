@@ -4,8 +4,10 @@
 - options editor
 - need a full-screen mode
 - refine scroll switching `ScrollEditorOrPage` class
-- make individual use cases that extend `SimpleEditor`
+- make individual use cases that extend `SimpleEditor` - make case split
 	- comments
+	- theme and post editor
+	- css editor
 	- find more...
 
 # TODO later
@@ -14,6 +16,9 @@
 	- monaco.min.js, possibly reduced to necessary stuff, if possible
 	- wp-code.min.js that depends on it. compiled from typescript file.
 	- how would this be possible using webpack?
+- Deploy in tandem with HESH. Have a setting to try the v3 beta.
+  - automated deployment of each...
+- hooks to attach "plugins" for auto formatting
 
 # Software design
 - single editor class that is connected/called/setup differently depending on the context

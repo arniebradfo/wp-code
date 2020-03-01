@@ -1,6 +1,6 @@
-import EditorDragResize from "./drag-resize";
-import { EDITOR_MIN_HEIGHT } from "../constants";
-
+import EditorDragResize from "../editor-parts/drag-resize";
+import { EDITOR_MIN_HEIGHT } from "../utils/constants";
+import './simple-editor.css';
 
 // Loads when there is only a quicktags textarea, with the visual tab
 // like comment replies - note even...

@@ -1,24 +1,6 @@
-.visually-hidden{
-    position: absolute !important;
-    top: -9999px !important;
-    left: -9999px !important; 
-    visibility: hidden;
-}
-
-.quicktags-toolbar.quicktags-toolbar{
-    min-height: initial;
-}
 
 
-.wpCode-content-resize-handle {
-    background: transparent url(./images/resize.gif) no-repeat scroll right bottom;
-    width: 12px;
-    cursor: row-resize;
-    height: 12px;
-    position: absolute;
-    bottom: 3px;
-    right: 3px;
-}
+
 
 .scrollTarget{
     position: relative;

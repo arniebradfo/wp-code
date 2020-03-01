@@ -1,4 +1,4 @@
-import { Quicktags, SwitchEditors, Wp, WpEditorInitialize } from "../index";
+import { Quicktags, SwitchEditors, Wp, WpEditorInitialize } from "../../index";
 
 declare let quicktags: Quicktags;
 declare let switchEditors: SwitchEditors;

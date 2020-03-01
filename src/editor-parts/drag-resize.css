@@ -1,0 +1,9 @@
+.wpCode-content-resize-handle {
+    background: transparent url(../images/resize.gif) no-repeat scroll right bottom;
+    width: 12px;
+    cursor: row-resize;
+    height: 12px;
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+}

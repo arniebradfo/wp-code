@@ -1,4 +1,5 @@
-import { EDITOR_MIN_HEIGHT } from '../constants'
+import { EDITOR_MIN_HEIGHT } from '../utils/constants'
+import './drag-resize.css';
 
 export default class EditorDragResize {
 

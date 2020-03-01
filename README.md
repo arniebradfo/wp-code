@@ -3,8 +3,8 @@ A Wordpress admin code editor plugin using the Monaco code editor that powers Vi
 
 ## Run it
 - `npm i`
-- `npm run start` to build 
-- `npm run dev` to build and watch with livereload
+- `npm start` to build and watch with livereload
+- `npm run build` to build 
 
 ## Survey
 https://docs.google.com/forms/d/1pSh0T5mVbDIQuagexBKl4mlwFUUd3F4J5A9hhv7i5AM/edit
