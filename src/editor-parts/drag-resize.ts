@@ -13,6 +13,7 @@ export default class EditorDragResize {
     constructor(
         public editor: monaco.editor.IStandaloneCodeEditor,
         public wrapperElement: HTMLElement,
+        //TODO: make this constructor take an SimpleEditor param
         private lookForResizeHandle: boolean = false
     ) {
         this.attachDragResize()
