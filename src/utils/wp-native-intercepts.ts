@@ -32,7 +32,7 @@ export function interceptSwitchEditors() {
 
         // this hijacks the SwitchEditors.switchEditors() click event setup in SwitchEditors.init()
         const oldSwitchEditorTabClass = 'wp-switch-editor'
-        const newSwitchEditorTabClass = oldSwitchEditorTabClass + '-stolen'
+        const newSwitchEditorTabClass = oldSwitchEditorTabClass + '-intercepted'
         let switchEditorTabs = document.querySelectorAll('.' + oldSwitchEditorTabClass)
 
         for (let i = 0; i < switchEditorTabs.length; i++) {
