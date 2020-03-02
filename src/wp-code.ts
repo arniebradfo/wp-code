@@ -2,7 +2,7 @@ import PostEditor from "./editor-types/post-editor";
 import SimpleEditor from "./editor-types/simple-editor";
 import wpHtmlMonarchLanguage from "./langs/wp-html.lang";
 import './wp-code.css';
-import { interceptSwitchEditors, interceptQuickTags, interceptEditor, interceptFun } from "./utils/wp-native-intercepts";
+import { interceptSwitchEditors, interceptQuickTags, interceptEditor, interceptFun } from "./utils/intercept";
 import DiscussionEditor from "./editor-types/discussion-editor";
 import { SwitchEditors, Quicktags, Wp } from "../index";
 
