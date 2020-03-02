@@ -1,13 +1,20 @@
 
 
 # TODOs:
+- Horizontal Scrolling dummy...
 - options editor
 - need a full-screen mode
-- refine scroll switching `ScrollEditorOrPage` class
+- ajax save
 - make individual use cases that extend `SimpleEditor` - make case split
-	- comments
-	- theme and post editor
-	- css editor
+	- comments page
+	- discussion comment editor
+	- Theme Editor
+	- Plugins Editor
+	- widget custom html 
+	- widget text
+	- Customize > additional css
+	- textareas everywhere?
+	- Gutenberg
 	- find more...
 
 # TODO later
@@ -27,7 +34,7 @@
 
 
 # TADAs
-Move todos here to be added to the changelog.
+Move TODOs here to be added to the changelog.
 - remove quicktags
 - make the add-media buttons work
 - editor resizing works

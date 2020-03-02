@@ -16,7 +16,7 @@ export default class SimpleEditor {
 
     constructor(
         public textarea: HTMLTextAreaElement,
-        public id: string,
+        public id: string, // = 'wpCodeInstance'+count++
         startEditorImmediately: boolean = true,
         public lookForResizeHandle: boolean = false
     ) {

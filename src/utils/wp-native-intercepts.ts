@@ -2,10 +2,37 @@ import { Quicktags, SwitchEditors, Wp, WpEditorInitialize } from "../../index";
 
 declare let quicktags: Quicktags;
 declare let switchEditors: SwitchEditors;
+declare const commentReply;
 declare const wp: Wp;
 
 // TODO: create a custom event for these?
 // https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events
+// ...and/or create a wrapper function that intercepts any function? - run it a multiple intervals?s
+// https://blakeembrey.com/articles/2014/01/wrapping-javascript-functions/
+
+
+export function interceptFun<T extends Function>(fun: T, runBefore: T | null = null, runAfter: T | null = null, cancel = false) {
+    // https://blakeembrey.com/articles/2014/01/wrapping-javascript-functions/
+    // https://stackoverflow.com/a/326693/5648839
+    // wish we could just use Typescript's @decorators onFunctions() but we cant, only classes :(
+
+    return function () {
+
+        if (runBefore != null)
+            runBefore.apply(this, arguments)
+
+        const returnFun = fun.apply(this, arguments)
+
+        if (runAfter != null)
+            runAfter.apply(this, arguments)
+
+        if (cancel) return
+        else return returnFun
+    }
+}
+
+
+/// DELETE BELOW ///
 
 export function interceptQuickTags(hijackQuickTagsCallback: Quicktags, ) {
     quicktags = hijackQuickTagsCallback
@@ -17,6 +44,20 @@ export function interceptEditor(editorInitCallback: WpEditorInitialize) {
     wp.editor.initialize = (id, settings) => {
         editorInitCallback(id, settings)
         oldWpEditorInitialize(id, settings)
+    }
+}
+
+export function interceptCommentReply(addcomment: (post_id: number) => void, send: () => void) {
+    const oldAddComment = commentReply.addcomment
+    commentReply.addcomment = (post_id) => {
+        addcomment(post_id)
+        oldAddComment(post_id)
+    }
+
+    const oldSend = commentReply.send
+    commentReply.send = () => {
+        send()
+        oldSend()
     }
 }
 
