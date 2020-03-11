@@ -57,6 +57,7 @@ export default class SimpleEditor {
         this.wrapperElement.classList.remove(this.hideCssClass)
         this.textarea.classList.add(this.hideCssClass)
         this.editor.setValue(this.textarea.value);
+        this.editor.layout();
     }
 
     stopEditor() {

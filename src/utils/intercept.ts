@@ -11,13 +11,14 @@ export function interceptFun<T extends Function>(fun: T, runBefore: T | null = n
         if (runBefore != null)
             runBefore.apply(this, arguments)
 
-        const returnFun = fun.apply(this, arguments)
+        let returnFun;
+        if (!cancel)
+            returnFun = fun.apply(this, arguments)
 
         if (runAfter != null)
             runAfter.apply(this, arguments)
 
-        if (cancel) return
-        else return returnFun
+        return returnFun
     }
 }
 

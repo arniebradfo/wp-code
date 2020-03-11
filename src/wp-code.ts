@@ -33,12 +33,7 @@ const hijackQuickTags = settings => {
     const editorType = editorTypeMap.hasOwnProperty(settings.id) ? editorTypeMap[settings.id] : SimpleEditor;
     wpCode.instances.push(new editorType(textarea, settings.id))
 };
-
 quicktags = interceptFun<(settings) => void>(quicktags, hijackQuickTags, null, true)
-
-// TODO: setup comment switching, possibly in DiscussionEditor
-commentReply.addcomment = interceptFun<(post_id) => void>(commentReply.addcomment, (post_id) => console.log('commentReply.addcomment intercepted', post_id));
-commentReply.send = interceptFun<() => void>(commentReply.send, () => console.log('commentReply.send intercepted'));
 
 // TODO: intercept switch editors
 
