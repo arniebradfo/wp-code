@@ -1,15 +1,27 @@
-# wordpress-code
-A Wordpress admin code editor plugin using the Monaco code editor that powers Visual Studio Code.
+
+![wpcode logo](./wp-code-icons/wp-code-icon.svg)
+
+#  WPcode
+A Wordpress admin code editor plugin using the Monaco code editor that powers VisualStudio Code. 
+
+This is v3 of the existing [HTML Editor Syntax Highlighter](https://github.com/mukhortov/HESH-WordPress-Plugin) [Wordpress plugin](https://wordpress.org/plugins/html-editor-syntax-highlighter/), however it is a total rewrite using the [Monaco code editor](https://microsoft.github.io/monaco-editor/) rather than [CodeMirror](https://codemirror.net/).
+
+## Status: Abandoned
+I don't use wordpress anymore and don't have the bandwidth to contribute to this plugin. If you want to pick it up, send me a message. It did work for the classic text editor at some point, but I haven't tested it in a long time.
+
+### Tokenizer
+I did write a tokenizer for monaco that handles a hybrid of html, css, js, wp shortcodes, and gutenberg json comments.
+
+![wordpress monaco syntax highlighter](./mockups/html-syntax-highlighter-wordpress-plugin_monaco-example.png)
+
+---
 
 ## Run it
 - `npm i`
 - `npm start` to build and watch with livereload
 - `npm run build` to build 
 
-## Survey
-https://docs.google.com/forms/d/1pSh0T5mVbDIQuagexBKl4mlwFUUd3F4J5A9hhv7i5AM/edit
-
-## Features
+## Features (Goals)
 - Code Editing In:
 	- Classic Editor
 	- Edit Theme

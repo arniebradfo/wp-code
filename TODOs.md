@@ -1,7 +1,7 @@
 
 
 # TODOs:
-- Horizontal Scrolling dummy...
+- Horizontal Scrolling
 - options editor
 - need a full-screen mode
 - ajax save
